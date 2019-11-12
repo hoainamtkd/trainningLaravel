@@ -23,7 +23,7 @@ class CreateProductTable extends Migration
             $table->tinyInteger('user_id')->default(1);
             $table->string('feature_image');
             $table->string('gallery');
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 

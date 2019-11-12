@@ -44,5 +44,5 @@
 		</table>
 		{{ $products->links() }}
 	@endif
-</div>
+</div> 
 @endsection

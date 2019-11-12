@@ -22,8 +22,7 @@ class ProductController extends Controller
     	return view('cpanel.product.index', $aData);
     }
 
-    public function getAdd()
-    {    
+    public function getAdd() {    
         $aData = array();
         $aCategory = Category::get()->toArray();
         if($aCategory){

@@ -18,6 +18,6 @@ class Category extends Model
 		'category_description',
 		'category_parent'
 	];
-	public $timestamps = true;
+	public $timestamps = true; 
 }
 

@@ -27,4 +27,5 @@ Route::prefix('cpanel')->group(function () {
 	Route::get('product/edit/{id}', 'Inside\ProductController@getEdit')->name('product-edit');
 	Route::post('product/edit/{id}/update', 'Inside\ProductController@postEdit')->name('product-update');
 	Route::get('product/delete/{id}', 'Inside\ProductController@deleteProduct')->name('product-delete');
+	
 });

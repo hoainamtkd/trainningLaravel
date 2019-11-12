@@ -71,28 +71,13 @@ $bp_sp: 767px; //sp
 }
 
 
-//----------------------------------------------//
-// *Variable									//
-//----------------------------------------------//
-
-// メインカラム
 $columnWidth: 1200;
 
-// フォントのベースサイズ
 $baseSize: 15;
 
-// フォントのベーカラー
 $baseColor: #000;
 
 
-//----------------------------------------------//
-// *Fonts									//
-//----------------------------------------------//
-$jp_default: "NotoSansCJKjp", "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ", Meiryo, sans-serif;
-$jp_min: "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "游明朝", YuMincho, "HGS明朝E", "ＭＳ Ｐ明朝", "MS PMincho", "Times New Roman", serif;
-$en_roboto: "Roboto Condensed", sans-serif;
-
-// コンテンツ幅 - baceWidth
 %bw {
 	max-width: $columnWidth + px;
 	margin: auto;
@@ -101,7 +86,6 @@ $en_roboto: "Roboto Condensed", sans-serif;
 	}
 }
 
-// クリアフィックス - clearFix
 %cf {
 	&:after {
 		content: "";
@@ -111,22 +95,10 @@ $en_roboto: "Roboto Condensed", sans-serif;
 }
 
 
-//----------------------------------------------//
-// *Function									//
-//----------------------------------------------//
-
-// %計算
 @function wCon($width,$parentWidth:$columnWidth) {
 	@return $width / $parentWidth * 100%;
 }
 
-
-//----------------------------------------------//
-// *mixin										//
-//----------------------------------------------//
-
-// フォントサイズ
-// @include fsz(任意のサイズ,親要素のサイズ); ※px不要
 @mixin fsz($size:$baseSize,$parent:null){
 	$i: $size * (100 / $baseSize);
 
@@ -137,8 +109,6 @@ $en_roboto: "Roboto Condensed", sans-serif;
 	}
 }
 
-// 値を振り分け - choiceValue
-// @include cV(プロパティ,pc幅,tab~sp幅); or @include cV(プロパティ,pc幅,tab幅,sp幅);
 @mixin cV($pro, $v1:0, $v2:0, $v3:null) {
 	#{$pro} : $v1;
 	@if $v3 == null {
@@ -155,10 +125,6 @@ $en_roboto: "Roboto Condensed", sans-serif;
 	}
 }
 
-// ホバー
-// @include hover {
-//		style
-// }
 @mixin hover() {
 	.mouse &:hover,
 	.touch &.touchstart {
@@ -172,16 +138,14 @@ $en_roboto: "Roboto Condensed", sans-serif;
 	}
 }
 
-// 幅を決めて中央寄せ - choiceWidth
-// @include cW(任意の幅px);
+
 @mixin cW($width) {
 	max-width: $width;
 	width: 95%;
 	margin: auto;
 }
 
-// 画像を拡大
-// @include zoomImg(拡大率,x軸基点);
+
 @mixin zoomImg($mag:140%,$cri:center) {
 	overflow: hidden;
 	img {
@@ -197,8 +161,7 @@ $en_roboto: "Roboto Condensed", sans-serif;
 	}
 }
 
-// リンクの下線を逆にする
-// @include reverseDecoration;
+
 @mixin reverseDecoration {
 	text-decoration: none !important;
 	@include hover {
@@ -206,14 +169,13 @@ $en_roboto: "Roboto Condensed", sans-serif;
 	}
 }
 
-// 縦方向のグラデーション(IE8対応)
-// @include gradient(上側のカラー,下側のカラー);
+
 @mixin gradient($c1:#000, $c2:#fff) {
 	@include background(linear-gradient($c1,$c2));
 	@include filter-gradient($c1,$c2);
 }
 
-/*Animate */
+
 @mixin animate($s : 0.5s){
 	-webkit-transition: $s;
 	-moz-transition: $s;
@@ -222,7 +184,7 @@ $en_roboto: "Roboto Condensed", sans-serif;
 	transition: $s;
 }
 
-//フォントサイズ設定
+
 @mixin fsz-cha($pc_fsz:30,$tab_fsz:30,$sp_fsz:17) {
 	@include fsz($pc_fsz);
 	@include mq(tab) {
@@ -233,7 +195,7 @@ $en_roboto: "Roboto Condensed", sans-serif;
 	}
 }
 
-/*Vertical text */
+
 @mixin vText() {
 	writing-mode: tb-rl;
 	writing-mode: vertical-rl;
@@ -248,7 +210,7 @@ $en_roboto: "Roboto Condensed", sans-serif;
 	display: inline-block;
 }
 
-//縦書きを元に戻す
+
 @mixin unVText {
 	writing-mode: horizontal-tb;
 	-ms-writing-mode: lr-tb;

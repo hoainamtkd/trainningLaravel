@@ -22,6 +22,6 @@ class Product extends Model
 		'user_id',
 		'feature_image',
 	];
-	public $timestamps = true;
+	public $timestamps = true; 
 }
 

@@ -45,5 +45,5 @@
 		</div>
 		<button type="submit" class="btn btn-default">Update</button>
 	</form>
-</div>
+</div> 
 @endsection
