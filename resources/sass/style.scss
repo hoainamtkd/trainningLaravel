@@ -1,0 +1,44 @@
+@import "settings";
+img{
+	max-width: 100%;
+}
+.alert{
+	margin-top:30px;
+}
+.wrap-main{
+	margin-top:30px;
+	
+	table{
+		tr{
+			td{
+				align-items: center;
+	    		vertical-align: middle;
+	    		&:first-child{
+	    			text-align:center;
+	    			vertical-align: middle;
+	    		}
+			}
+		}
+	}
+	button{
+		&[type="submit"]{
+			background:green;
+			padding: 15px;
+			margin-top: 30px;
+			color: #ffffff;
+			width: 200px;
+		}
+	}
+	.form-control{
+		height: auto;
+	}
+	.wrap_feature_img,
+	.wrap_gallery{
+		img{
+			width:calc(100%/ 5 - 20px);
+			margin:10px;
+			margin-left: 0px;
+			margin-bottom: 0px;
+		}
+	}
+}
