@@ -16,6 +16,7 @@ class CreateProductTable extends Migration
         Schema::create('tbl_product', function (Blueprint $table) {
             $table->bigIncrements('product_id');
             $table->string('product_name');
+            $table->string('slug');
             $table->longText('product_description');
             $table->string('product_price');
             $table->string('product_price_sales');

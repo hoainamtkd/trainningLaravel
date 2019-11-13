@@ -4,6 +4,7 @@
 <div class="wrap-main">
 	<form method="POST" action="{{ route('product-update',$product['product_id']) }}" enctype="multipart/form-data">
 		<p>#{{ $product['product_id'] }}</p>
+		<p><a href="{{ route('product') }}">Back</a></p>
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<div class="form-group">
 			<label for="email">Name:</label>

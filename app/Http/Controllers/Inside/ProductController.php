@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Inside;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Str;
 // Model
 use App\Product;
 use App\Category;
@@ -15,7 +15,9 @@ class ProductController extends Controller
 
     public function getProducts() {
         $aData = array();
-    	$aProduct = Product::paginate(10); 
+    	$aProduct = Product::leftJoin('tbl_category', 'tbl_category.category_id', '=', 'tbl_product.category_id')
+        ->select('product_id', 'product_name', 'product_description', 'product_price', 'product_price_sales', 'feature_image','category_name')
+        ->paginate(10);
         if($aProduct){
             $aData['products'] = $aProduct;
         }
@@ -143,7 +145,7 @@ class ProductController extends Controller
         $aProduct = Product::where('product_id','=',$id)->first();
         if($aProduct){
             Product::where('product_id','=',$id)->delete();
-            return back()->with('status_success', 'Product Deleted');
+            return back()->with('status_success', 'Product Delelted');
         }else{
             return back()->with('status_error', 'Có lỗi xảy ra');
         }

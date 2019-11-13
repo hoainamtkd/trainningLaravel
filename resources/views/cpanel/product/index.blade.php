@@ -2,6 +2,9 @@
 @section('title', 'Product')
 @section('content')
 <div class="wrap-main">
+	<p>
+		<a href="{{ route('product-add') }}">Add Product</a>
+	</p>
 	@if($products)
 		<table class="table table-bordered">
 			<thead>
@@ -10,6 +13,7 @@
 					<th>Image</th>
 					<th class="name" width="30%">Name</th>
 					<th>Price</th>
+					<th>Price Sales</th>
 					<th>Category</th>
 					<th>Action</th>
 				</tr>
@@ -26,9 +30,18 @@
 								{{ $product['product_name'] ? $product['product_name'] : '' }}
 							</td>
 							<td>
-								{{ $product['product_price'] ? number_format($product['product_price'], 0, ',', '.') .' đ' : '' }} 
+								{{ $product['product_price'] ? number_format($product['product_price'], 0, ',', '.') .' đ' : '' }}
 							</td>
-							<td>Category 1</td>
+							<td>
+								<span class="badge badge-success">
+									{{ $product['product_price_sales'] ? number_format($product['product_price_sales'], 0, ',', '.') .' đ' : '' }}
+								</span>
+							</td>
+							<td>
+								<span class="badge badge-success">
+									{{ $product['category_name'] }}
+								</span> 
+							</td>
 							<td>
 								<a href="{{ route('product-edit',$product['product_id']) }}">Edit</a> |
 								<a href="{{ route('product-delete',$product['product_id']) }}">Delete</a>

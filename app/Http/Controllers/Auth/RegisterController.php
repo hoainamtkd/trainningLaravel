@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -50,7 +51,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:tbl_users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -58,15 +59,24 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  Request  $request
      * @return \App\User
      */
-    protected function create(array $data)
-    {
-        return User::create([
+    public function register(Request $request)
+    {   
+        $data = $request->all();
+        $this->validator($data)->validate();
+        $avatar = $request->file('avatar');
+        if($avatar){
+           $path = $avatar->store('uploads/avatar');
+        }
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'position' => $data['position'],
+            'avatar' => @$path ? $path : ''
         ]);
+        return back()->with('status_success', 'Thêm user thành công');
     }
 }

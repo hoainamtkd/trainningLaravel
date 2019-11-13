@@ -1,4 +1,10 @@
 @import "settings";
+body{
+	margin: 30px;
+	.navbar{
+		border:1px solid #f0f0f0;
+	}
+}
 img{
 	max-width: 100%;
 }
@@ -9,6 +15,36 @@ img{
 	margin-top:30px;
 	
 	table{
+		&.table-user{
+			td{
+				&.img{
+					text-align: center;
+					span{
+					    width: 80px;
+					    height: 80px;
+					    border-radius: 50%;
+					    background-size: cover;
+					    display: block;
+					    background-repeat: no-repeat;
+					}
+				} 
+			}
+		}
+		&.table-slider{
+			td{
+				&.img{
+					text-align: center;
+					span{
+					    width: 500px;
+					    height: 150px;
+					    background-size: cover;
+					    display: block;
+					    background-position:center;
+					    background-repeat: no-repeat;
+					}
+				} 
+			}
+		}
 		tr{
 			td{
 				align-items: center;
@@ -32,6 +68,14 @@ img{
 	.form-control{
 		height: auto;
 	}
+	.form-group{
+		.avatar-img{
+			img{
+				margin-top: 5px;
+				width: 200px;
+			}
+		}
+	}
 	.wrap_feature_img,
 	.wrap_gallery{
 		img{
@@ -41,5 +85,8 @@ img{
 			margin-bottom: 0px;
 		}
 	}
+	.wrap_img{
+		margin-top: 5px;
+		width: 300px;
+	}
 }
- 

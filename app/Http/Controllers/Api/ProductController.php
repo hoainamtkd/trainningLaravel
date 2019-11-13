@@ -5,16 +5,23 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class Product extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $userData = $request->only([
+            'firstname',
+            'lastname',
+        ]);
+        if (empty($userData['firstname']) && empty($userData['lastname'])) {
+            return new \Exception('Missing data', 404);
+        }
+        return $userData['firstname'] . ' ' . $userData['lastname'];
     }
 
     /**

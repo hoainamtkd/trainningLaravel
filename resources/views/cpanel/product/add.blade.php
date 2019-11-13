@@ -4,6 +4,7 @@
 <div class="wrap-main">
 	<form method="POST" action="{{ route('product-add') }}" enctype="multipart/form-data">
 		<p>#Product Add</p>
+		<p><a href="{{ route('product') }}">Back</a></p>
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<div class="form-group">
 			<label for="email">Name:</label>

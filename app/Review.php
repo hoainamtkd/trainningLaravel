@@ -4,24 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Review extends Model
 {
-   	protected $table = 'tbl_product';
+    protected $table = 'tbl_reviews';
 	/**
 	 * The attributes that are mass assignable.
 	 *
 	 * @var array
 	 */
 	protected $fillable = [
+		'content',
 		'product_id',
-		'product_name',
-		'product_description',
-		'product_price',
-		'product_price_sales',
-		'category_id',
-		'user_id',
-		'feature_image',
+		'star',
+		'approve_status',
+		'user_id'
 	];
 	public $timestamps = true;
 }
-

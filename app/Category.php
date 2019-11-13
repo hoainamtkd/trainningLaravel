@@ -20,4 +20,3 @@ class Category extends Model
 	];
 	public $timestamps = true; 
 }
-

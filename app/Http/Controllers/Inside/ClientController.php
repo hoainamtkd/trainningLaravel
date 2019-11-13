@@ -7,5 +7,5 @@ use App\Http\Controllers\Controller;
 
 class Client extends Controller
 {
-    //
+    public function __construct() {}
 }
