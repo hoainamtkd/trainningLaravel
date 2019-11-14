@@ -1,0 +1,36 @@
+@import "settings";
+.products{
+	display: flex;
+	flex-flow: wrap;
+	.product-item{
+	    width: calc(100% / 4 - 14px);
+    	margin: 7px;
+    	margin-bottom: 50px;
+    	@include mq(tab){
+    		width: calc(100% / 3 - 14px);
+    	}
+    	@include mq(sp){
+    		width: calc(100% / 2 - 14px);
+    	}
+    	@include mq(max_w,320px){
+    		width: 100%;
+    	}
+		img{
+			max-width: 100%;
+		}
+		h3{
+			font-size: 20px;
+			padding-top:15px;
+		}
+		.product_meta{
+			.price{
+				color: red;
+				margin-right: 15px;
+				text-decoration: line-through;
+			}
+			.price_sales{
+				font-size: 25px;
+			}
+		}
+	}
+}

@@ -55,7 +55,14 @@ Route::prefix('admincp')->middleware('auth')->group(function () {
 
 });
 
+// Auth Router
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+
+// Fontend
+Route::get('/{any}', function ($any) {
+	return view('frontend');
+})->where('any', '.*');
+
+// Login , Logout
 Route::get('/admincp/login', 'Inside\AuthController@login')->name('login_cp');
 Route::get('/admincp/logout', 'Inside\AuthController@logout')->name('logout_cp');
