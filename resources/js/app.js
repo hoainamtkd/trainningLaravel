@@ -13,8 +13,8 @@ import Footer from './components/Layouts/Footer';
 // Page
 import Home from './components/Home'; 
 import ProductDetail from './components/ProductDetail';
-import Example from './components/Example';
-
+import Cart from './components/Cart';
+import Checkout from './components/Checkout';
 
 export default function App() {
   	return (
@@ -29,8 +29,11 @@ export default function App() {
 		          	<Route exact path="/">
 		            	<Home />
 		          	</Route>
-		          	<Route path="/example">
-		            	<Example />
+		          	<Route path="/cart">
+		            	<Cart />
+		          	</Route>
+		          	<Route path="/checkout">
+		            	<Checkout />
 		          	</Route>
 		    	</Switch>
 		    	<Footer/>

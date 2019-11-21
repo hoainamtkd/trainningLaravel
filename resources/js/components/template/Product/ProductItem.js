@@ -43,7 +43,7 @@ export default class ProductItem extends Component {
                         <span className="price"> { data.product_price ? data.product_price + ' đ' : '' }</span>
                         <span className="price_sales"> { data.product_price_sales ? data.product_price_sales + ' đ' : '' }</span> 
                     </div>
-                    <button className="btn btn-success">Add to Cart</button>
+                    <a href={`/product/${data.product_id}`} className="btn btn-success">BUY NOW</a>
                 </div>
             </div>
         );

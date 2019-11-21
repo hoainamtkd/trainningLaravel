@@ -24,6 +24,10 @@
 			<textarea class="form-control" name="description" rows="10" required></textarea>
 		</div>
 		<div class="form-group">
+			<label for="desc">Short Description:</label>
+			<textarea class="form-control" name="short_description" rows="10" required></textarea>
+		</div>
+		<div class="form-group">
 			<label for="price">Price:</label>
 			<input type="number" class="form-control" name="price" value="" required>
 		</div>

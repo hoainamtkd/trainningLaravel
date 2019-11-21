@@ -74,6 +74,42 @@
                 }
             }
         },
+        "/api/related-products/{id}": {
+            "get": {
+                "tags": [
+                    "product"
+                ],
+                "summary": "get list related product",
+                "operationId": "App\\Http\\Controllers\\Api\\ProductController::getAllRelatedProduct",
+                "parameters": [
+                    {
+                        "name": "product_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully"
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "403": {
+                        "description": "access denied"
+                    },
+                    "409": {
+                        "description": "exists"
+                    },
+                    "500": {
+                        "description": "error"
+                    }
+                }
+            }
+        },
         "/api/products/{id}": {
             "get": {
                 "tags": [

@@ -38,6 +38,10 @@
 			<textarea class="form-control" name="description" rows="10">{{ $product['product_description'] ? $product['product_description'] : '' }}</textarea>
 		</div>
 		<div class="form-group">
+			<label for="desc">Description:</label>
+			<textarea class="form-control" name="short_description" rows="10">{{ $product['product_short_description'] ? $product['product_short_description'] : '' }}</textarea>
+		</div>
+		<div class="form-group">
 			<label for="price">Price:</label>
 			<input type="number" class="form-control" name="price" value="{{ $product['product_price'] ? $product['product_price'] : '' }}">
 		</div>

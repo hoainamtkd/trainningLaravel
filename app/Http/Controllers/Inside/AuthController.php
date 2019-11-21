@@ -8,9 +8,9 @@ use Auth;
 
 class AuthController extends Controller
 {
-    public function __construct() {}
+    public function __construct() { }
 
-    public function login(){
+    public function login(){ 
     	return view('auth.login');
     }
     public function logout(){

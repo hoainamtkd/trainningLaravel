@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // Product
 Route::get('products', 'Api\ProductController@getAllProduct');
+Route::get('related-products/{id}', 'Api\ProductController@getAllRelatedProduct');
 Route::get('products/{id}', 'Api\ProductController@getProductDetail');
 
 // Slider

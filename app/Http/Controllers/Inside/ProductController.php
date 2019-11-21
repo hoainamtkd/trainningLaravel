@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function getProducts() {
         $aData = array();
     	$aProduct = Product::leftJoin('tbl_category', 'tbl_category.category_id', '=', 'tbl_product.category_id')
-        ->select('product_id', 'product_name', 'product_description', 'product_price', 'product_price_sales', 'feature_image','category_name')
+        ->select('product_id', 'product_name', 'product_description' ,'product_short_description', 'product_price', 'product_price_sales', 'feature_image','category_name')
         ->paginate(10);
         if($aProduct){
             $aData['products'] = $aProduct;
@@ -41,6 +41,9 @@ class ProductController extends Controller
             }
             if($req['description']){
                 $data->product_description = $req['description'];
+            }
+            if($req['short_description']){
+                $data->product_short_description = $req['short_description'];
             }
             if($req['price']){
                 $data->product_price = $req['price'];
@@ -102,6 +105,9 @@ class ProductController extends Controller
             }
             if($req->description){
                 $data['product_description'] = $req->description;
+            }
+            if($req->short_description){
+                $data['product_short_description'] = $req->short_description;
             }
             if($req->price){
                 $data['product_price'] = $req->price;
