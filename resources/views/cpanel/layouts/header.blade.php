@@ -20,7 +20,7 @@
 					<a class="nav-link" href="{{ route('slider') }}">Slider</a>
 				</li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('slider') }}">Order</a>
+                    <a class="nav-link" href="{{ route('order') }}">Order</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('review') }}">Review</a>

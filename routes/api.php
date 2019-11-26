@@ -22,5 +22,11 @@ Route::get('products', 'Api\ProductController@getAllProduct');
 Route::get('related-products/{id}', 'Api\ProductController@getAllRelatedProduct');
 Route::get('products/{id}', 'Api\ProductController@getProductDetail');
 
+// Checkout
+Route::post('checkout', 'Api\CheckoutController@checkOutOrder');
+
+// Order
+Route::get('order/{id}', 'Api\OrderController@getOrderbyId');
+
 // Slider
 Route::get('slider', 'Api\SliderController@getSliderbyPosition'); 

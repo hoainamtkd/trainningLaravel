@@ -21,7 +21,7 @@ class SliderController extends ApiController
     *   ),
     *   @OA\Parameter(
     *      name="position",
-    *      in="query",
+    *      in="path",
     *      required=true,
     *      description="1: Banner Large , 2: Banner Small",
     *      @OA\Schema(
@@ -49,7 +49,6 @@ class SliderController extends ApiController
     public function getSliderbyPosition(Request $req)
     {
         try {
-
             $position = $req->position;
             if($position){
                 $sliders = Slider::where('position' , '=' , $position)->get();

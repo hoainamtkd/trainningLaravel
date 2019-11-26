@@ -178,6 +178,18 @@ module.exports = _inheritsLoose;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/regenerator/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
+
+
+/***/ }),
+
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -1916,6 +1928,218 @@ module.exports = {
   deepMerge: deepMerge,
   extend: extend,
   trim: trim
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/react-animated-slider/build/horizontal.css":
+/*!*************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/react-animated-slider/build/horizontal.css ***!
+  \*************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".slider {\n\tposition: relative;\n\twidth: 100%;\n\theight: 400px;\n\toverflow: hidden\n}\n\n.slider a.previousButton, .slider a.nextButton {\n\tfont-size: 22px;\n\tline-height: 0;\n\tdisplay: block;\n\tposition: absolute;\n\ttop: 50%;\n\t-webkit-transform: translateY(-50%);\n\t        transform: translateY(-50%);\n\t-webkit-transition: all .3s linear;\n\ttransition: all .3s linear;\n\tz-index: 1;\n\tcolor: #333;\n\tpadding: 10px;\n\ttext-decoration: none;\n\t-webkit-backface-visibility: hidden;\n\t        backface-visibility: hidden\n\t/* prevent jump effect when scaling */\n}\n\n.slider a.previousButton:not(.disabled):hover, .slider a.nextButton:not(.disabled):hover {\n\t-webkit-transform: translateY(-50%) scale(1.25);\n\t        transform: translateY(-50%) scale(1.25);\n\tcursor: pointer;\n}\n\n.slider a.previousButton {\n\tleft: 20px;\n}\n\n.slider a.nextButton {\n\tright: 20px;\n}\n\n.slide {\n\twidth: 100%;\n\theight: 100%;\n\tposition: absolute;\n\toverflow: hidden\n}\n\n.slide.hidden {\n\tvisibility: hidden;\n}\n\n.slide.previous {\n\tleft: -100%;\n}\n\n.slide.current {\n\tleft: 0;\n}\n\n.slide.next {\n\tleft: 100%;\n}\n\n.slide.animateIn,\n\t.slide.animateOut {\n\t-webkit-transition: all 2s ease;\n\ttransition: all 2s ease;\n}\n\n.slide.animateIn.previous,\n\t\t.slide.animateIn.next {\n\tleft: 0;\n\tvisibility: visible;\n}\n\n.slide.animateOut.previous {\n\tleft: 100%;\n}\n\n.slide.animateOut.next {\n\tleft: -100%;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/lib/css-base.js":
+/*!*************************************************!*\
+  !*** ./node_modules/css-loader/lib/css-base.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/decode-uri-component/index.js":
+/*!****************************************************!*\
+  !*** ./node_modules/decode-uri-component/index.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var token = '%[a-f0-9]{2}';
+var singleMatcher = new RegExp(token, 'gi');
+var multiMatcher = new RegExp('(' + token + ')+', 'gi');
+
+function decodeComponents(components, split) {
+	try {
+		// Try to decode the entire string first
+		return decodeURIComponent(components.join(''));
+	} catch (err) {
+		// Do nothing
+	}
+
+	if (components.length === 1) {
+		return components;
+	}
+
+	split = split || 1;
+
+	// Split the array in 2 parts
+	var left = components.slice(0, split);
+	var right = components.slice(split);
+
+	return Array.prototype.concat.call([], decodeComponents(left), decodeComponents(right));
+}
+
+function decode(input) {
+	try {
+		return decodeURIComponent(input);
+	} catch (err) {
+		var tokens = input.match(singleMatcher);
+
+		for (var i = 1; i < tokens.length; i++) {
+			input = decodeComponents(tokens, i).join('');
+
+			tokens = input.match(singleMatcher);
+		}
+
+		return input;
+	}
+}
+
+function customDecodeURIComponent(input) {
+	// Keep track of all the replacements and prefill the map with the `BOM`
+	var replaceMap = {
+		'%FE%FF': '\uFFFD\uFFFD',
+		'%FF%FE': '\uFFFD\uFFFD'
+	};
+
+	var match = multiMatcher.exec(input);
+	while (match) {
+		try {
+			// Decode as big chunks as possible
+			replaceMap[match[0]] = decodeURIComponent(match[0]);
+		} catch (err) {
+			var result = decode(match[0]);
+
+			if (result !== match[0]) {
+				replaceMap[match[0]] = result;
+			}
+		}
+
+		match = multiMatcher.exec(input);
+	}
+
+	// Add `%C2` at the end of the map to make sure it does not replace the combinator before everything else
+	replaceMap['%C2'] = '\uFFFD';
+
+	var entries = Object.keys(replaceMap);
+
+	for (var i = 0; i < entries.length; i++) {
+		// Replace all decoded components
+		var key = entries[i];
+		input = input.replace(new RegExp(key, 'g'), replaceMap[key]);
+	}
+
+	return input;
+}
+
+module.exports = function (encodedURI) {
+	if (typeof encodedURI !== 'string') {
+		throw new TypeError('Expected `encodedURI` to be of type `string`, got `' + typeof encodedURI + '`');
+	}
+
+	try {
+		encodedURI = encodedURI.replace(/\+/g, ' ');
+
+		// Try the built in decoder first
+		return decodeURIComponent(encodedURI);
+	} catch (err) {
+		// Fallback to a more advanced decoder
+		return customDecodeURIComponent(encodedURI);
+	}
 };
 
 
@@ -4281,6 +4505,361 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
 module.exports = ReactPropTypesSecret;
 
+
+/***/ }),
+
+/***/ "./node_modules/query-string/index.js":
+/*!********************************************!*\
+  !*** ./node_modules/query-string/index.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+const strictUriEncode = __webpack_require__(/*! strict-uri-encode */ "./node_modules/strict-uri-encode/index.js");
+const decodeComponent = __webpack_require__(/*! decode-uri-component */ "./node_modules/decode-uri-component/index.js");
+const splitOnFirst = __webpack_require__(/*! split-on-first */ "./node_modules/split-on-first/index.js");
+
+function encoderForArrayFormat(options) {
+	switch (options.arrayFormat) {
+		case 'index':
+			return key => (result, value) => {
+				const index = result.length;
+				if (value === undefined || (options.skipNull && value === null)) {
+					return result;
+				}
+
+				if (value === null) {
+					return [...result, [encode(key, options), '[', index, ']'].join('')];
+				}
+
+				return [
+					...result,
+					[encode(key, options), '[', encode(index, options), ']=', encode(value, options)].join('')
+				];
+			};
+
+		case 'bracket':
+			return key => (result, value) => {
+				if (value === undefined || (options.skipNull && value === null)) {
+					return result;
+				}
+
+				if (value === null) {
+					return [...result, [encode(key, options), '[]'].join('')];
+				}
+
+				return [...result, [encode(key, options), '[]=', encode(value, options)].join('')];
+			};
+
+		case 'comma':
+			return key => (result, value) => {
+				if (value === null || value === undefined || value.length === 0) {
+					return result;
+				}
+
+				if (result.length === 0) {
+					return [[encode(key, options), '=', encode(value, options)].join('')];
+				}
+
+				return [[result, encode(value, options)].join(',')];
+			};
+
+		default:
+			return key => (result, value) => {
+				if (value === undefined || (options.skipNull && value === null)) {
+					return result;
+				}
+
+				if (value === null) {
+					return [...result, encode(key, options)];
+				}
+
+				return [...result, [encode(key, options), '=', encode(value, options)].join('')];
+			};
+	}
+}
+
+function parserForArrayFormat(options) {
+	let result;
+
+	switch (options.arrayFormat) {
+		case 'index':
+			return (key, value, accumulator) => {
+				result = /\[(\d*)\]$/.exec(key);
+
+				key = key.replace(/\[\d*\]$/, '');
+
+				if (!result) {
+					accumulator[key] = value;
+					return;
+				}
+
+				if (accumulator[key] === undefined) {
+					accumulator[key] = {};
+				}
+
+				accumulator[key][result[1]] = value;
+			};
+
+		case 'bracket':
+			return (key, value, accumulator) => {
+				result = /(\[\])$/.exec(key);
+				key = key.replace(/\[\]$/, '');
+
+				if (!result) {
+					accumulator[key] = value;
+					return;
+				}
+
+				if (accumulator[key] === undefined) {
+					accumulator[key] = [value];
+					return;
+				}
+
+				accumulator[key] = [].concat(accumulator[key], value);
+			};
+
+		case 'comma':
+			return (key, value, accumulator) => {
+				const isArray = typeof value === 'string' && value.split('').indexOf(',') > -1;
+				const newValue = isArray ? value.split(',') : value;
+				accumulator[key] = newValue;
+			};
+
+		default:
+			return (key, value, accumulator) => {
+				if (accumulator[key] === undefined) {
+					accumulator[key] = value;
+					return;
+				}
+
+				accumulator[key] = [].concat(accumulator[key], value);
+			};
+	}
+}
+
+function encode(value, options) {
+	if (options.encode) {
+		return options.strict ? strictUriEncode(value) : encodeURIComponent(value);
+	}
+
+	return value;
+}
+
+function decode(value, options) {
+	if (options.decode) {
+		return decodeComponent(value);
+	}
+
+	return value;
+}
+
+function keysSorter(input) {
+	if (Array.isArray(input)) {
+		return input.sort();
+	}
+
+	if (typeof input === 'object') {
+		return keysSorter(Object.keys(input))
+			.sort((a, b) => Number(a) - Number(b))
+			.map(key => input[key]);
+	}
+
+	return input;
+}
+
+function removeHash(input) {
+	const hashStart = input.indexOf('#');
+	if (hashStart !== -1) {
+		input = input.slice(0, hashStart);
+	}
+
+	return input;
+}
+
+function extract(input) {
+	input = removeHash(input);
+	const queryStart = input.indexOf('?');
+	if (queryStart === -1) {
+		return '';
+	}
+
+	return input.slice(queryStart + 1);
+}
+
+function parseValue(value, options) {
+	if (options.parseNumbers && !Number.isNaN(Number(value)) && (typeof value === 'string' && value.trim() !== '')) {
+		value = Number(value);
+	} else if (options.parseBooleans && value !== null && (value.toLowerCase() === 'true' || value.toLowerCase() === 'false')) {
+		value = value.toLowerCase() === 'true';
+	}
+
+	return value;
+}
+
+function parse(input, options) {
+	options = Object.assign({
+		decode: true,
+		sort: true,
+		arrayFormat: 'none',
+		parseNumbers: false,
+		parseBooleans: false
+	}, options);
+
+	const formatter = parserForArrayFormat(options);
+
+	// Create an object with no prototype
+	const ret = Object.create(null);
+
+	if (typeof input !== 'string') {
+		return ret;
+	}
+
+	input = input.trim().replace(/^[?#&]/, '');
+
+	if (!input) {
+		return ret;
+	}
+
+	for (const param of input.split('&')) {
+		let [key, value] = splitOnFirst(options.decode ? param.replace(/\+/g, ' ') : param, '=');
+
+		// Missing `=` should be `null`:
+		// http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+		value = value === undefined ? null : decode(value, options);
+		formatter(decode(key, options), value, ret);
+	}
+
+	for (const key of Object.keys(ret)) {
+		const value = ret[key];
+		if (typeof value === 'object' && value !== null) {
+			for (const k of Object.keys(value)) {
+				value[k] = parseValue(value[k], options);
+			}
+		} else {
+			ret[key] = parseValue(value, options);
+		}
+	}
+
+	if (options.sort === false) {
+		return ret;
+	}
+
+	return (options.sort === true ? Object.keys(ret).sort() : Object.keys(ret).sort(options.sort)).reduce((result, key) => {
+		const value = ret[key];
+		if (Boolean(value) && typeof value === 'object' && !Array.isArray(value)) {
+			// Sort object keys, not values
+			result[key] = keysSorter(value);
+		} else {
+			result[key] = value;
+		}
+
+		return result;
+	}, Object.create(null));
+}
+
+exports.extract = extract;
+exports.parse = parse;
+
+exports.stringify = (object, options) => {
+	if (!object) {
+		return '';
+	}
+
+	options = Object.assign({
+		encode: true,
+		strict: true,
+		arrayFormat: 'none'
+	}, options);
+
+	const formatter = encoderForArrayFormat(options);
+
+	const objectCopy = Object.assign({}, object);
+	if (options.skipNull) {
+		for (const key of Object.keys(objectCopy)) {
+			if (objectCopy[key] === undefined || objectCopy[key] === null) {
+				delete objectCopy[key];
+			}
+		}
+	}
+
+	const keys = Object.keys(objectCopy);
+
+	if (options.sort !== false) {
+		keys.sort(options.sort);
+	}
+
+	return keys.map(key => {
+		const value = object[key];
+
+		if (value === undefined) {
+			return '';
+		}
+
+		if (value === null) {
+			return encode(key, options);
+		}
+
+		if (Array.isArray(value)) {
+			return value
+				.reduce(formatter(key), [])
+				.join('&');
+		}
+
+		return encode(key, options) + '=' + encode(value, options);
+	}).filter(x => x.length > 0).join('&');
+};
+
+exports.parseUrl = (input, options) => {
+	return {
+		url: removeHash(input).split('?')[0] || '',
+		query: parse(extract(input), options)
+	};
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/react-animated-slider/build/horizontal.css":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-animated-slider/build/horizontal.css ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./horizontal.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/react-animated-slider/build/horizontal.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/react-animated-slider/build/index.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/react-animated-slider/build/index.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports=function(e){var t={};function n(i){if(t[i])return t[i].exports;var r=t[i]={i:i,l:!1,exports:{}};return e[i].call(r.exports,r,r.exports,n),r.l=!0,r.exports}return n.m=e,n.c=t,n.d=function(e,t,i){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:i})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var i=Object.create(null);if(n.r(i),Object.defineProperty(i,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var r in e)n.d(i,r,function(t){return e[t]}.bind(null,r));return i},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=5)}({4:function(e,t){e.exports=__webpack_require__(/*! react */ "./node_modules/react/index.js")},5:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.VERTICAL=t.HORIZONTAL=void 0;var i=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var i in n)Object.prototype.hasOwnProperty.call(n,i)&&(e[i]=n[i])}return e},r=function(){function e(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(t,n,i){return n&&e(t.prototype,n),i&&e(t,i),t}}(),o=function(e){return e&&e.__esModule?e:{default:e}}(n(4));var s="previous",a="next",l=t.HORIZONTAL="horizontal",u=(t.VERTICAL="vertical",{previousButton:"previousButton",nextButton:"nextButton",buttonDisabled:"disabled",track:"track",slide:"slide",hidden:"hidden",previous:"previous",current:"current",next:"next",animateIn:"animateIn",animateOut:"animateOut"}),p=2e3,c={up:"rotate(90 10 15)",down:"rotate(270 10 15)",left:"rotate(180 10 15)",right:"rotate(0 10 15)"};function d(e){var t=e.direction,n=void 0===t?"right":t;return o.default.createElement("svg",{xmlns:"http://www.w3.org/2000/svg",width:"20",height:"30",viewBox:"0 0 20 30"},o.default.createElement("polygon",{fill:"#000",points:"20 15 4.228 0 0 3.626 11.954 15 0 26.374 4.228 30",transform:c[n]}))}var m=function(e){function t(e){!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t);var n=function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));n.setupAutoplay=function(){n.props.autoplay&&!n.isMouseOver&&(n.stopAutoplay(),n.autoplayTimerId=setInterval(n.next,parseInt(n.props.autoplay,10)))},n.stopAutoplay=function(){n.autoplayTimerId&&clearInterval(n.autoplayTimerId)},n.onAnimationEnd=function(){n.setState({currentSlideIndex:n.nextSlideIndex,animating:!1,animation:void 0}),n.setupAutoplay(),"function"==typeof n.props.onSlideChange&&n.props.onSlideChange({slideIndex:n.nextSlideIndex})},n.isDisabled=function(){return n.slideCount<2||n.state.animating||n.props.disabled},n.isInfinite=function(){return n.slideCount>2&&!1!==n.props.infinite},n.canGoPrevious=function(){return n.isInfinite()||n.state.currentSlideIndex>0},n.canGoNext=function(){return n.isInfinite()||n.state.currentSlideIndex<n.slideCount-1},n.goTo=function(e,t){if(!n.isDisabled()){n.nextSlideIndex=e,n.setState({animating:!0,animation:t});var i=n.props.duration||p;n.animationTimerId=setTimeout(n.onAnimationEnd,i)}},n.previous=function(){if(n.canGoPrevious()){var e=n.state.currentSlideIndex-1,t=e>=0?e:n.slideCount-1;n.goTo(t,s)}},n.next=function(){if(n.canGoNext()){var e=(n.state.currentSlideIndex+1)%n.slideCount;n.goTo(e,a)}},n.getSlideClass=function(e){var t=n.state,i=t.currentSlideIndex,r=t.animation,o=n.getClassNames(),l=n.slideCount-1;return e===i?r?o.animateOut+" "+o[r]:o.current:2===n.slideCount?r?o.animateIn+" "+o[r]:e<i?o.previous:o.next:e===i-1||0===i&&e===l?r===s?o.animateIn+" "+o.previous:r===a?o.hidden:o.previous:e===i+1||0===e&&i===l?r===a?o.animateIn+" "+o.next:r===s?o.hidden:o.next:o.hidden},n.isSwiping=!1,n.handleTouchStart=function(e){if(!n.isDisabled()){n.stopAutoplay();var t=n.getClassNames(),i=t.current,r=t.previous,o=t.next,s=e.touches[0];n.isSwiping=!0,n.pageStartPosition=s[n.swipeEventProperty],n.currentElement=n.sliderRef.getElementsByClassName(i)[0],n.previousElement=n.sliderRef.getElementsByClassName(r)[0],n.nextElement=n.sliderRef.getElementsByClassName(o)[0];var a=n.currentElement.getBoundingClientRect()[n.swipeProperty];n.currentElementStartPosition=0,n.currentElementPosition=0,n.currentElement.style.transition="none",n.previousElement&&(n.previousElement.style.transition="none",n.previousElement.style.visibility="visible",n.previousElementStartPosition=n.previousElement.getBoundingClientRect()[n.swipeProperty]-a),n.nextElement&&(n.nextElement.style.visibility="visible",n.nextElement.style.transition="none",n.nextElementStartPosition=n.nextElement.getBoundingClientRect()[n.swipeProperty]-a)}},n.animating=!1,n.handleTouchMove=function(e){e.preventDefault(),n.animating=n.animating||requestAnimationFrame(function(){if(n.isSwiping){var t=e.touches[0][n.swipeEventProperty]-n.pageStartPosition;n.currentElementPosition=n.currentElementStartPosition+t,n.currentElement.style[n.swipeProperty]=n.currentElementPosition+"px",n.previousElement&&(n.previousElementPosition=n.previousElementStartPosition+t,n.previousElement.style[n.swipeProperty]=n.previousElementPosition+"px"),n.nextElement&&(n.nextElementPosition=n.nextElementStartPosition+t,n.nextElement.style[n.swipeProperty]=n.nextElementPosition+"px"),n.animating=!1}else n.animating=!1})},n.handleTouchEnd=function(){n.animating=!1,n.isSwiping=!1,n.currentElement.style.removeProperty(n.swipeProperty),n.currentElement.style.removeProperty("transition"),n.previousElement&&(n.previousElement.style.removeProperty("visibility"),n.previousElement.style.removeProperty("transition"),n.previousElement.style.removeProperty(n.swipeProperty)),n.nextElement&&(n.nextElement.style.removeProperty("visibility"),n.nextElement.style.removeProperty("transition"),n.nextElement.style.removeProperty(n.swipeProperty));var e=n.currentElementStartPosition-n.currentElementPosition,t=n.props.minSwipeOffset||15;Math.abs(e)>t?e<0?n.previous():n.next():n.setupAutoplay()},n.getClassNames=function(){return i({},u,n.props.classNames)},n.initTouchEvents=function(e){!n.isDisabled()&&e&&(n.sliderRef=e,n.sliderRef.addEventListener("touchstart",n.handleTouchStart),n.sliderRef.addEventListener("touchmove",n.handleTouchMove,{passive:!1}),n.sliderRef.addEventListener("touchend",n.handleTouchEnd))},n.handleMouseOver=function(){n.isMouseOver=!0,n.stopAutoplay()},n.handleMouseOut=function(){n.isMouseOver=!1,n.setupAutoplay()};var r=n.props,c=r.slideIndex,d=void 0===c?0:c,m=r.direction,f=void 0===m?l:m;return n.state={currentSlideIndex:d,animating:!1},n.slideCount=o.default.Children.count(n.props.children),n.direction=f,n.swipeProperty=f===l?"left":"top",n.swipeEventProperty=f===l?"clientX":"clientY",n}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(t,o.default.PureComponent),r(t,[{key:"componentDidMount",value:function(){this.setupAutoplay()}},{key:"componentWillUnmount",value:function(){this.stopAutoplay(),this.animationTimerId&&clearTimeout(this.animationTimerId)}},{key:"componentWillReceiveProps",value:function(e){this.slideCount=o.default.Children.count(e.children),this.state.currentSlideIndex>=this.slideCount&&this.setState({currentSlideIndex:0})}},{key:"render",value:function(){var e=this,t=this.props,n=t.children,r=t.className,s=void 0===r?"slider":r,a=t.previousButton,u=void 0===a?o.default.createElement(d,{direction:this.direction===l?"left":"down"}):a,p=t.nextButton,c=void 0===p?o.default.createElement(d,{direction:this.direction===l?"right":"up"}):p,m=t.touchDisabled,f=t.autoplay,v=this.getClassNames(),y=this.isDisabled();return o.default.createElement("div",i({className:v.slider||s},!m&&{ref:this.initTouchEvents},f&&{onMouseOver:this.handleMouseOver,onMouseOut:this.handleMouseOut}),o.default.createElement("a",{onClick:this.previous,className:v.previousButton+(y||!this.canGoPrevious()?" "+v.buttonDisabled:"")},u),o.default.createElement("a",{onClick:this.next,className:v.nextButton+(y||!this.canGoNext()?" "+v.buttonDisabled:"")},c),o.default.createElement("div",{className:v.track},o.default.Children.map(n,function(t,n){return o.default.cloneElement(t,{key:n,className:[v.slide,e.getSlideClass(n),t.props.className].filter(function(e){return e}).join(" ")})})))}}]),t}();t.default=m}});
 
 /***/ }),
 
@@ -32136,6 +32715,1203 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/react-hook-form/dist/react-hook-form.es.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-hook-form/dist/react-hook-form.es.js ***!
+  \*****************************************************************/
+/*! exports provided: default, FormContext, useFormContext */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormContext", function() { return FormContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useFormContext", function() { return useFormContext; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+
+const VALIDATION_MODE = {
+    onBlur: 'onBlur',
+    onChange: 'onChange',
+    onSubmit: 'onSubmit',
+};
+const RADIO_INPUT = 'radio';
+const UNDEFINED = 'undefined';
+const EVENTS = {
+    BLUR: 'blur',
+    CHANGE: 'change',
+    INPUT: 'input',
+};
+const INPUT_VALIDATION_RULES = {
+    max: 'max',
+    min: 'min',
+    maxLength: 'maxLength',
+    minLength: 'minLength',
+    pattern: 'pattern',
+    required: 'required',
+    validate: 'validate',
+};
+
+function attachEventListeners({ field, validateAndStateUpdate, isRadioOrCheckbox, }) {
+    const { ref } = field;
+    if (!ref.addEventListener) {
+        return;
+    }
+    ref.addEventListener(isRadioOrCheckbox ? EVENTS.CHANGE : EVENTS.INPUT, validateAndStateUpdate);
+    ref.addEventListener(EVENTS.BLUR, validateAndStateUpdate);
+}
+
+var isUndefined = (val) => val === undefined;
+
+var isNullOrUndefined = (value) => value === null || isUndefined(value);
+
+var isArray = (value) => Array.isArray(value);
+
+var isObject = (value) => !isNullOrUndefined(value) && !isArray(value) && typeof value === 'object';
+
+const reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/;
+const reIsPlainProp = /^\w*$/;
+const rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
+const reEscapeChar = /\\(\\)?/g;
+const reIsUint = /^(?:0|[1-9]\d*)$/;
+function isIndex(value) {
+    return reIsUint.test(value) && value > -1;
+}
+function isKey(value) {
+    if (isArray(value)) {
+        return false;
+    }
+    return reIsPlainProp.test(value) || !reIsDeepProp.test(value);
+}
+const stringToPath = (string) => {
+    const result = [];
+    string.replace(rePropName, (match, number, quote, string) => {
+        result.push(quote ? string.replace(reEscapeChar, '$1') : number || match);
+    });
+    return result;
+};
+function set(object, path, value) {
+    let index = -1;
+    const tempPath = isKey(path) ? [path] : stringToPath(path);
+    const length = tempPath.length;
+    const lastIndex = length - 1;
+    while (++index < length) {
+        const key = tempPath[index];
+        let newValue = value;
+        if (index !== lastIndex) {
+            const objValue = object[key];
+            newValue =
+                isObject(objValue) || isArray(objValue)
+                    ? objValue
+                    : isIndex(tempPath[index + 1])
+                        ? []
+                        : {};
+        }
+        object[key] = newValue;
+        object = object[key];
+    }
+    return object;
+}
+
+var combineFieldValues = (data) => Object.entries(data).reduce((previous, [key, value]) => {
+    if (!!key.match(/\[.+\]/gi) || key.indexOf('.') > 0) {
+        set(previous, key, value);
+        return previous;
+    }
+    return Object.assign(Object.assign({}, previous), { [key]: value });
+}, {});
+
+var removeAllEventListeners = (ref, validateWithStateUpdate) => {
+    if (!ref.removeEventListener) {
+        return;
+    }
+    ref.removeEventListener(EVENTS.INPUT, validateWithStateUpdate);
+    ref.removeEventListener(EVENTS.CHANGE, validateWithStateUpdate);
+    ref.removeEventListener(EVENTS.BLUR, validateWithStateUpdate);
+};
+
+var isRadioInput = (type) => type === RADIO_INPUT;
+
+var isCheckBoxInput = (type) => type === 'checkbox';
+
+function isDetached(element) {
+    if (!element) {
+        return true;
+    }
+    if (!(element instanceof HTMLElement) ||
+        element.nodeType === Node.DOCUMENT_NODE) {
+        return false;
+    }
+    return isDetached(element.parentNode);
+}
+
+function findRemovedFieldAndRemoveListener(fields, validateWithStateUpdate = () => { }, field, forceDelete) {
+    if (!field) {
+        return;
+    }
+    const { ref, mutationWatcher, options } = field;
+    if (!ref.type) {
+        return;
+    }
+    const { name, type } = ref;
+    if ((isRadioInput(type) || isCheckBoxInput(type)) && options) {
+        options.forEach(({ ref }, index) => {
+            const option = options[index];
+            if ((option && isDetached(ref)) || forceDelete) {
+                const mutationWatcher = option.mutationWatcher;
+                removeAllEventListeners(option, validateWithStateUpdate);
+                if (mutationWatcher) {
+                    mutationWatcher.disconnect();
+                }
+                options.splice(index, 1);
+            }
+        });
+        if (!options.length) {
+            delete fields[name];
+        }
+    }
+    else if (isDetached(ref) || forceDelete) {
+        removeAllEventListeners(ref, validateWithStateUpdate);
+        if (mutationWatcher) {
+            mutationWatcher.disconnect();
+        }
+        delete fields[name];
+    }
+}
+
+const defaultReturn = {
+    isValid: false,
+    value: '',
+};
+var getRadioValue = (options) => isArray(options)
+    ? options.reduce((previous, { ref: { checked, value } }) => checked
+        ? {
+            isValid: true,
+            value,
+        }
+        : previous, defaultReturn)
+    : defaultReturn;
+
+var getMultipleSelectValue = (options) => [...options]
+    .filter(({ selected }) => selected)
+    .map(({ value }) => value);
+
+var isMultipleSelect = (type) => type === 'select-multiple';
+
+var isEmptyString = (value) => value === '';
+
+const defaultResult = {
+    value: false,
+    isValid: false,
+};
+const validResult = { value: true, isValid: true };
+var getCheckboxValue = (options) => {
+    if (isArray(options)) {
+        if (options.length > 1) {
+            const values = options
+                .filter(({ ref: { checked } }) => checked)
+                .map(({ ref: { value } }) => value);
+            return { value: values, isValid: !!values.length };
+        }
+        const { checked, value, attributes: { value: valueAttribute }, } = options[0].ref;
+        return checked
+            ? valueAttribute
+                ? isUndefined(value) || isEmptyString(value)
+                    ? validResult
+                    : { value: value, isValid: true }
+                : validResult
+            : defaultResult;
+    }
+    return defaultResult;
+};
+
+function getFieldValue(fields, ref) {
+    const { type, name, options, value, files } = ref;
+    const field = fields[name];
+    if (type === 'file') {
+        return files;
+    }
+    if (isRadioInput(type)) {
+        return field ? getRadioValue(field.options).value : '';
+    }
+    if (isMultipleSelect(type)) {
+        return getMultipleSelectValue(options);
+    }
+    if (isCheckBoxInput(type)) {
+        return field ? getCheckboxValue(field.options).value : false;
+    }
+    return value;
+}
+
+var getFieldsValues = (fields) => Object.values(fields).reduce((previous, { ref, ref: { name } }) => (Object.assign(Object.assign({}, previous), { [name]: getFieldValue(fields, ref) })), {});
+
+var isEmptyObject = (value) => isObject(value) && !Object.keys(value).length;
+
+var isSameError = (error, type, message) => isObject(error) && error.type === type && error.message === message;
+
+function shouldUpdateWithError({ errors, name, error, validFields, fieldsWithValidation, schemaErrors, }) {
+    const isFieldValid = isEmptyObject(error);
+    const isFormValid = isEmptyObject(errors);
+    const currentFieldError = error[name];
+    const existFieldError = errors[name];
+    if ((isFieldValid && validFields.has(name)) ||
+        (existFieldError && existFieldError.isManual)) {
+        return false;
+    }
+    if (isFormValid !== isFieldValid ||
+        (!isFormValid && !existFieldError) ||
+        (isFieldValid &&
+            fieldsWithValidation.has(name) &&
+            !validFields.has(name)) ||
+        (schemaErrors && isEmptyObject(schemaErrors) !== isFormValid)) {
+        return true;
+    }
+    return (currentFieldError &&
+        !isSameError(existFieldError, currentFieldError.type, currentFieldError.message));
+}
+
+var isRegex = (value) => value instanceof RegExp;
+
+var getValueAndMessage = (validationData) => {
+    const isPureObject = isObject(validationData) && !isRegex(validationData);
+    return {
+        value: isPureObject
+            ? validationData.value
+            : validationData,
+        message: isPureObject
+            ? validationData.message
+            : '',
+    };
+};
+
+var isString = (value) => typeof value === 'string';
+
+var displayNativeError = (nativeValidation, ref, message) => {
+    if (nativeValidation && isString(message)) {
+        ref.setCustomValidity(message);
+    }
+};
+
+var isFunction = (value) => typeof value === 'function';
+
+var isBoolean = (value) => typeof value === 'boolean';
+
+function getValidateError(result, ref, nativeError, type = 'validate') {
+    const isStringValue = isString(result);
+    if (isStringValue || (isBoolean(result) && !result)) {
+        const message = isStringValue ? result : '';
+        const error = {
+            type,
+            message,
+            ref,
+        };
+        nativeError(message);
+        return error;
+    }
+}
+
+var appendErrors = (name, validateAllFieldCriteria, errors, type, message) => {
+    if (!validateAllFieldCriteria) {
+        return {};
+    }
+    const error = errors[name] || { types: {} };
+    return Object.assign(Object.assign({}, error), { types: Object.assign(Object.assign({}, error.types), { [type]: message || true }) });
+};
+
+var validateField = async (fields, nativeValidation, validateAllFieldCriteria, { ref, ref: { type, value, name }, options, required, maxLength, minLength, min, max, pattern, validate, }) => {
+    const error = {};
+    const isRadio = isRadioInput(type);
+    const isCheckBox = isCheckBoxInput(type);
+    const isRadioOrCheckbox = isRadio || isCheckBox;
+    const isEmpty = isEmptyString(value);
+    const nativeError = displayNativeError.bind(null, nativeValidation, ref);
+    const typedName = name;
+    const appendErrorsCurry = appendErrors.bind(null, typedName, validateAllFieldCriteria, error);
+    if (required &&
+        ((!isRadio && !isCheckBox && (isEmpty || isNullOrUndefined(value))) ||
+            (isCheckBox && !getCheckboxValue(options).isValid) ||
+            (isRadio && !getRadioValue(options).isValid))) {
+        const message = isString(required) ? required : '';
+        error[typedName] = Object.assign({ type: INPUT_VALIDATION_RULES.required, message, ref: isRadioOrCheckbox ? fields[typedName].options[0].ref : ref }, appendErrorsCurry(INPUT_VALIDATION_RULES.required, message));
+        nativeError(message);
+        if (!validateAllFieldCriteria) {
+            return error;
+        }
+    }
+    if (!isNullOrUndefined(min) || !isNullOrUndefined(max)) {
+        let exceedMax;
+        let exceedMin;
+        const { value: maxValue, message: maxMessage } = getValueAndMessage(max);
+        const { value: minValue, message: minMessage } = getValueAndMessage(min);
+        if (type === 'number') {
+            const valueNumber = parseFloat(value);
+            if (!isNullOrUndefined(maxValue)) {
+                exceedMax = valueNumber > maxValue;
+            }
+            if (!isNullOrUndefined(minValue)) {
+                exceedMin = valueNumber < minValue;
+            }
+        }
+        else {
+            if (isString(maxValue)) {
+                exceedMax = new Date(value) > new Date(maxValue);
+            }
+            if (isString(minValue)) {
+                exceedMin = new Date(value) < new Date(minValue);
+            }
+        }
+        if (exceedMax || exceedMin) {
+            const message = exceedMax ? maxMessage : minMessage;
+            error[typedName] = Object.assign({ type: exceedMax
+                    ? INPUT_VALIDATION_RULES.max
+                    : INPUT_VALIDATION_RULES.min, message,
+                ref }, (exceedMax
+                ? appendErrorsCurry(INPUT_VALIDATION_RULES.max, message)
+                : appendErrorsCurry(INPUT_VALIDATION_RULES.min, message)));
+            nativeError(message);
+            if (!validateAllFieldCriteria) {
+                return error;
+            }
+        }
+    }
+    if (isString(value) && !isEmpty && (maxLength || minLength)) {
+        const { value: maxLengthValue, message: maxLengthMessage, } = getValueAndMessage(maxLength);
+        const { value: minLengthValue, message: minLengthMessage, } = getValueAndMessage(minLength);
+        const inputLength = value.toString().length;
+        const exceedMax = maxLength && inputLength > maxLengthValue;
+        const exceedMin = minLength && inputLength < minLengthValue;
+        if (exceedMax || exceedMin) {
+            const message = exceedMax ? maxLengthMessage : minLengthMessage;
+            error[typedName] = Object.assign({ type: exceedMax
+                    ? INPUT_VALIDATION_RULES.maxLength
+                    : INPUT_VALIDATION_RULES.minLength, message,
+                ref }, (exceedMax
+                ? appendErrorsCurry(INPUT_VALIDATION_RULES.maxLength, message)
+                : appendErrorsCurry(INPUT_VALIDATION_RULES.minLength, message)));
+            nativeError(message);
+            if (!validateAllFieldCriteria) {
+                return error;
+            }
+        }
+    }
+    if (pattern && !isEmpty) {
+        const { value: patternValue, message: patternMessage } = getValueAndMessage(pattern);
+        if (isRegex(patternValue) && !patternValue.test(value)) {
+            error[typedName] = Object.assign({ type: INPUT_VALIDATION_RULES.pattern, message: patternMessage, ref }, appendErrorsCurry(INPUT_VALIDATION_RULES.pattern, patternMessage));
+            nativeError(patternMessage);
+            if (!validateAllFieldCriteria) {
+                return error;
+            }
+        }
+    }
+    if (validate) {
+        const fieldValue = getFieldValue(fields, ref);
+        const validateRef = isRadioOrCheckbox && options ? options[0].ref : ref;
+        if (isFunction(validate)) {
+            const result = await validate(fieldValue);
+            const validateError = getValidateError(result, validateRef, nativeError);
+            if (validateError) {
+                error[typedName] = Object.assign(Object.assign({}, validateError), appendErrorsCurry(INPUT_VALIDATION_RULES.validate, validateError.message));
+                if (!validateAllFieldCriteria) {
+                    return error;
+                }
+            }
+        }
+        else if (isObject(validate)) {
+            const validateFunctions = Object.entries(validate);
+            const validationResult = await new Promise((resolve) => {
+                validateFunctions.reduce(async (previous, [key, validate], index) => {
+                    if ((!isEmptyObject(await previous) && !validateAllFieldCriteria) ||
+                        !isFunction(validate)) {
+                        return resolve(previous);
+                    }
+                    let result;
+                    const validateResult = await validate(fieldValue);
+                    const validateError = getValidateError(validateResult, validateRef, nativeError, key);
+                    if (validateError) {
+                        result = Object.assign(Object.assign({}, validateError), appendErrorsCurry(key, validateError.message));
+                        if (validateAllFieldCriteria) {
+                            error[typedName] = result;
+                        }
+                    }
+                    else {
+                        result = previous;
+                    }
+                    return validateFunctions.length - 1 === index
+                        ? resolve(result)
+                        : result;
+                }, {});
+            });
+            if (!isEmptyObject(validationResult)) {
+                error[typedName] = Object.assign({ ref: validateRef }, validationResult);
+                if (!validateAllFieldCriteria) {
+                    return error;
+                }
+            }
+        }
+    }
+    if (nativeValidation) {
+        ref.setCustomValidity('');
+    }
+    return error;
+};
+
+const parseErrorSchema = (error, validateAllFieldCriteria) => isArray(error.inner)
+    ? error.inner.reduce((previous, { path, message, type }) => (Object.assign(Object.assign({}, previous), (previous[path] && validateAllFieldCriteria
+        ? {
+            [path]: appendErrors(path, validateAllFieldCriteria, previous, type, message),
+        }
+        : {
+            [path]: Object.assign({ message,
+                type }, (validateAllFieldCriteria
+                ? {
+                    types: { [type]: message || true },
+                }
+                : {})),
+        }))), {})
+    : {
+        [error.path]: { message: error.message, type: error.type },
+    };
+async function validateWithSchema(validationSchema, validationSchemaOption, validateAllFieldCriteria, data) {
+    try {
+        return {
+            result: await validationSchema.validate(data, validationSchemaOption),
+            fieldErrors: {},
+        };
+    }
+    catch (e) {
+        return {
+            result: {},
+            fieldErrors: parseErrorSchema(e, validateAllFieldCriteria),
+        };
+    }
+}
+
+function attachNativeValidation(ref, rules) {
+    Object.entries(rules).forEach(([key, value]) => {
+        if (key === INPUT_VALIDATION_RULES.pattern && isRegex(value)) {
+            ref[key] = value.source;
+        }
+        else {
+            ref[key] = key === INPUT_VALIDATION_RULES.pattern || value;
+        }
+    });
+}
+
+var get = (obj, path, defaultValue) => {
+    const result = path
+        .split(/[,[\].]+?/)
+        .filter(Boolean)
+        .reduce((result, key) => (isNullOrUndefined(result) ? result : result[key]), obj);
+    return isUndefined(result) || result === obj ? defaultValue : result;
+};
+
+var getDefaultValue = (defaultValues, name, defaultValue) => isUndefined(defaultValues[name])
+    ? get(defaultValues, name, defaultValue)
+    : defaultValues[name];
+
+function flatArray(list) {
+    return list.reduce((a, b) => a.concat(isArray(b) ? flatArray(b) : b), []);
+}
+
+const getPath = (path, values) => isArray(values)
+    ? values.map((item, index) => {
+        const pathWithIndex = `${path}[${index}]`;
+        if (isArray(item)) {
+            return getPath(pathWithIndex, item);
+        }
+        else if (isObject(item)) {
+            return Object.entries(item).map(([key, objectValue]) => isString(objectValue)
+                ? `${pathWithIndex}.${key}`
+                : getPath(`${pathWithIndex}.${key}`, objectValue));
+        }
+        return pathWithIndex;
+    })
+    : Object.entries(values).map(([key, objectValue]) => isString(objectValue) ? `${path}.${key}` : getPath(path, objectValue));
+var getPath$1 = (parentPath, value) => flatArray(getPath(parentPath, value));
+
+var assignWatchFields = (fieldValues, fieldName, watchFields, combinedDefaultValues) => {
+    let value;
+    if (isEmptyObject(fieldValues)) {
+        value = undefined;
+    }
+    else if (!isUndefined(fieldValues[fieldName])) {
+        watchFields.add(fieldName);
+        value = fieldValues[fieldName];
+    }
+    else {
+        value = get(combineFieldValues(fieldValues), fieldName);
+        if (!isUndefined(value)) {
+            getPath$1(fieldName, value).forEach(name => watchFields.add(name));
+        }
+    }
+    return isUndefined(value)
+        ? getDefaultValue(combinedDefaultValues, fieldName)
+        : value;
+};
+
+var omitValidFields = (errorFields, validFieldNames) => Object.entries(errorFields).reduce((previous, [name, error]) => validFieldNames.some(validFieldName => validFieldName === name)
+    ? previous
+    : Object.assign(Object.assign({}, previous), { [name]: error }), {});
+
+function onDomRemove(element, onDetachCallback) {
+    const observer = new MutationObserver(() => {
+        if (isDetached(element)) {
+            observer.disconnect();
+            onDetachCallback();
+        }
+    });
+    observer.observe(window.document, {
+        childList: true,
+        subtree: true,
+    });
+    return observer;
+}
+
+var modeChecker = (mode) => ({
+    isOnSubmit: !mode || mode === VALIDATION_MODE.onSubmit,
+    isOnBlur: mode === VALIDATION_MODE.onBlur,
+    isOnChange: mode === VALIDATION_MODE.onChange,
+});
+
+const { useRef, useState, useCallback, useEffect } = react__WEBPACK_IMPORTED_MODULE_0__;
+function useForm({ mode = VALIDATION_MODE.onSubmit, reValidateMode = VALIDATION_MODE.onChange, validationSchema, defaultValues = {}, nativeValidation = false, submitFocusError = true, validationSchemaOption = { abortEarly: false }, validateCriteriaMode, } = {}) {
+    const fieldsRef = useRef({});
+    const validateAllFieldCriteria = validateCriteriaMode === 'all';
+    const errorsRef = useRef({});
+    const schemaErrorsRef = useRef({});
+    const touchedFieldsRef = useRef(new Set());
+    const watchFieldsRef = useRef(new Set());
+    const dirtyFieldsRef = useRef(new Set());
+    const fieldsWithValidationRef = useRef(new Set());
+    const validFieldsRef = useRef(new Set());
+    const defaultValuesRef = useRef({});
+    const isUnMount = useRef(false);
+    const isWatchAllRef = useRef(false);
+    const isSubmittedRef = useRef(false);
+    const isDirtyRef = useRef(false);
+    const submitCountRef = useRef(0);
+    const isSubmittingRef = useRef(false);
+    const isSchemaValidateTriggeredRef = useRef(false);
+    const validateAndUpdateStateRef = useRef();
+    const [, _render] = useState();
+    const { isOnBlur, isOnSubmit } = useRef(modeChecker(mode)).current;
+    const isWindowUndefined = typeof window === UNDEFINED;
+    const isWeb = typeof document !== UNDEFINED &&
+        !isWindowUndefined &&
+        !isUndefined(window.HTMLElement);
+    const isProxyEnabled = !isWindowUndefined && 'Proxy' in window;
+    const readFormState = useRef({
+        dirty: !isProxyEnabled,
+        isSubmitted: isOnSubmit,
+        submitCount: !isProxyEnabled,
+        touched: !isProxyEnabled,
+        isSubmitting: !isProxyEnabled,
+        isValid: !isProxyEnabled,
+    });
+    const { isOnBlur: isReValidateOnBlur, isOnSubmit: isReValidateOnSubmit, } = useRef(modeChecker(reValidateMode)).current;
+    const validationSchemaOptionRef = useRef(validationSchemaOption);
+    const combineErrorsRef = (data) => (Object.assign(Object.assign({}, errorsRef.current), data));
+    const render = useCallback(() => {
+        if (!isUnMount.current) {
+            _render({});
+        }
+    }, []);
+    const validateFieldCurry = useCallback(validateField.bind(null, fieldsRef.current, nativeValidation, validateAllFieldCriteria), []);
+    const validateWithSchemaCurry = useCallback(validateWithSchema.bind(null, validationSchema, validationSchemaOptionRef.current, validateAllFieldCriteria), [validationSchema]);
+    const renderBaseOnError = useCallback((name, error, shouldRender) => {
+        let reRender = shouldRender ||
+            shouldUpdateWithError({
+                errors: errorsRef.current,
+                error,
+                name,
+                validFields: validFieldsRef.current,
+                fieldsWithValidation: fieldsWithValidationRef.current,
+                schemaErrors: isSchemaValidateTriggeredRef.current && schemaErrorsRef.current,
+            });
+        if (isEmptyObject(error)) {
+            if (fieldsWithValidationRef.current.has(name) || validationSchema) {
+                validFieldsRef.current.add(name);
+                reRender = reRender || errorsRef.current[name];
+            }
+            delete errorsRef.current[name];
+        }
+        else {
+            validFieldsRef.current.delete(name);
+            reRender = reRender || !errorsRef.current[name];
+        }
+        errorsRef.current = validationSchema
+            ? schemaErrorsRef.current
+            : combineErrorsRef(error);
+        if (reRender) {
+            render();
+            return true;
+        }
+    }, [render, validationSchema]);
+    const setFieldValue = useCallback((name, rawValue) => {
+        const field = fieldsRef.current[name];
+        if (!field) {
+            return false;
+        }
+        const ref = field.ref;
+        const { type } = ref;
+        const options = field.options;
+        const value = isWeb &&
+            ref instanceof window.HTMLElement &&
+            isNullOrUndefined(rawValue)
+            ? ''
+            : rawValue;
+        if (isRadioInput(type) && options) {
+            options.forEach(({ ref: radioRef }) => (radioRef.checked = radioRef.value === value));
+        }
+        else if (isMultipleSelect(type)) {
+            [...ref.options].forEach(selectRef => (selectRef.selected = value.includes(selectRef.value)));
+        }
+        else if (isCheckBoxInput(type) && options) {
+            options.length > 1
+                ? options.forEach(({ ref: checkboxRef }) => (checkboxRef.checked = value.includes(checkboxRef.value)))
+                : (options[0].ref.checked = !!value);
+        }
+        else {
+            ref.value = value;
+        }
+        return type;
+    }, [isWeb]);
+    const setDirty = (name) => {
+        if (!fieldsRef.current[name]) {
+            return false;
+        }
+        const isDirty = defaultValuesRef.current[name] !==
+            getFieldValue(fieldsRef.current, fieldsRef.current[name].ref);
+        const isDirtyChanged = dirtyFieldsRef.current.has(name) !== isDirty;
+        if (isDirty) {
+            dirtyFieldsRef.current.add(name);
+        }
+        else {
+            dirtyFieldsRef.current.delete(name);
+        }
+        isDirtyRef.current = !!dirtyFieldsRef.current.size;
+        return isDirtyChanged && readFormState.current.dirty;
+    };
+    const setInternalValue = useCallback((name, value) => {
+        setFieldValue(name, value);
+        if (setDirty(name) ||
+            (!touchedFieldsRef.current.has(name) && readFormState.current.touched)) {
+            return !!touchedFieldsRef.current.add(name);
+        }
+    }, [setFieldValue]);
+    const executeValidation = useCallback(async ({ name, value, }, shouldRender) => {
+        const field = fieldsRef.current[name];
+        if (!field) {
+            return false;
+        }
+        if (!isUndefined(value)) {
+            setInternalValue(name, value);
+        }
+        if (shouldRender) {
+            render();
+        }
+        const error = await validateFieldCurry(field);
+        renderBaseOnError(name, error);
+        return isEmptyObject(error);
+    }, [render, renderBaseOnError, setInternalValue, validateFieldCurry]);
+    const executeSchemaValidation = useCallback(async (payload) => {
+        const { fieldErrors } = await validateWithSchemaCurry(combineFieldValues(getFieldsValues(fieldsRef.current)));
+        const isMultipleFields = isArray(payload);
+        const names = isArray(payload)
+            ? payload.map(({ name }) => name)
+            : [payload.name];
+        const validFieldNames = names.filter(name => !fieldErrors[name]);
+        const firstFieldName = names[0];
+        schemaErrorsRef.current = isMultipleFields
+            ? fieldErrors
+            : fieldErrors[firstFieldName]
+                ? { [firstFieldName]: fieldErrors[firstFieldName] }
+                : {};
+        isSchemaValidateTriggeredRef.current = true;
+        if (isMultipleFields) {
+            errorsRef.current = omitValidFields(combineErrorsRef(Object.entries(fieldErrors)
+                .filter(([key]) => names.includes(key))
+                .reduce((previous, [name, error]) => (Object.assign(Object.assign({}, previous), { [name]: error })), {})), validFieldNames);
+            render();
+        }
+        else {
+            renderBaseOnError(firstFieldName, schemaErrorsRef.current);
+        }
+        return isEmptyObject(errorsRef.current);
+    }, [render, renderBaseOnError, validateWithSchemaCurry]);
+    const triggerValidation = useCallback(async (payload, shouldRender) => {
+        const fields = payload || Object.keys(fieldsRef.current).map(name => ({ name }));
+        if (validationSchema) {
+            return executeSchemaValidation(fields);
+        }
+        if (isArray(fields)) {
+            const result = await Promise.all(fields.map(async (data) => await executeValidation(data, false)));
+            render();
+            return result.every(Boolean);
+        }
+        return await executeValidation(fields, shouldRender);
+    }, [executeSchemaValidation, executeValidation, render, validationSchema]);
+    const setValue = useCallback((name, value, shouldValidate) => {
+        const shouldRender = setInternalValue(name, value) ||
+            isWatchAllRef.current ||
+            watchFieldsRef.current.has(name);
+        if (shouldValidate) {
+            return triggerValidation({ name }, shouldRender);
+        }
+        if (shouldRender) {
+            render();
+        }
+        return;
+    }, [render, setInternalValue, triggerValidation]);
+    validateAndUpdateStateRef.current = validateAndUpdateStateRef.current
+        ? validateAndUpdateStateRef.current
+        : async ({ type, target }) => {
+            const name = target ? target.name : '';
+            const fields = fieldsRef.current;
+            const errors = errorsRef.current;
+            const field = fields[name];
+            const currentError = errors[name];
+            let error;
+            if (!field) {
+                return;
+            }
+            const isBlurEvent = type === EVENTS.BLUR;
+            const shouldSkipValidation = (isOnSubmit && !isSubmittedRef.current) ||
+                (isOnBlur && !isBlurEvent && !currentError) ||
+                (isReValidateOnBlur && !isBlurEvent && currentError) ||
+                (isReValidateOnSubmit && currentError);
+            const shouldUpdateDirty = setDirty(name);
+            let shouldUpdateState = isWatchAllRef.current ||
+                watchFieldsRef.current.has(name) ||
+                shouldUpdateDirty;
+            if (isBlurEvent &&
+                !touchedFieldsRef.current.has(name) &&
+                readFormState.current.touched) {
+                touchedFieldsRef.current.add(name);
+                shouldUpdateState = true;
+            }
+            if (shouldSkipValidation) {
+                return shouldUpdateState && render();
+            }
+            if (validationSchema) {
+                const { fieldErrors } = await validateWithSchemaCurry(combineFieldValues(getFieldsValues(fields)));
+                Object.keys(fieldErrors).forEach(name => validFieldsRef.current.delete(name));
+                schemaErrorsRef.current = fieldErrors;
+                isSchemaValidateTriggeredRef.current = true;
+                error = fieldErrors[name] ? { [name]: fieldErrors[name] } : {};
+            }
+            else {
+                error = await validateFieldCurry(field);
+            }
+            if (!renderBaseOnError(name, error) && shouldUpdateState) {
+                render();
+            }
+        };
+    const resetFieldRef = useCallback((name) => {
+        delete errorsRef.current[name];
+        delete fieldsRef.current[name];
+        delete defaultValuesRef.current[name];
+        [
+            touchedFieldsRef,
+            dirtyFieldsRef,
+            fieldsWithValidationRef,
+            validFieldsRef,
+            watchFieldsRef,
+        ].forEach(data => data.current.delete(name));
+        if (readFormState.current.isValid || readFormState.current.touched) {
+            render();
+        }
+    }, [render]);
+    const removeEventListenerAndRef = useCallback((field, forceDelete) => {
+        if (!field) {
+            return;
+        }
+        findRemovedFieldAndRemoveListener(fieldsRef.current, validateAndUpdateStateRef.current, field, forceDelete);
+        resetFieldRef(field.ref.name);
+    }, [resetFieldRef]);
+    function clearError(name) {
+        if (isUndefined(name)) {
+            errorsRef.current = {};
+        }
+        else {
+            (isArray(name) ? name : [name]).forEach(fieldName => delete errorsRef.current[fieldName]);
+        }
+        render();
+    }
+    const setInternalError = ({ name, type, types, message, preventRender, }) => {
+        const errors = errorsRef.current;
+        if (!isSameError(errors[name], type, message)) {
+            errors[name] = {
+                type,
+                types,
+                message,
+                ref: {},
+                isManual: true,
+            };
+            if (!preventRender) {
+                render();
+            }
+        }
+    };
+    function setError(name, type = '', message) {
+        if (isString(name)) {
+            setInternalError(Object.assign({ name }, (isObject(type)
+                ? {
+                    types: type,
+                    type: '',
+                }
+                : {
+                    type,
+                    message,
+                })));
+        }
+        else if (isArray(name)) {
+            name.forEach(error => setInternalError(Object.assign(Object.assign({}, error), { preventRender: true })));
+            render();
+        }
+    }
+    function watch(fieldNames, defaultValue) {
+        const combinedDefaultValues = isUndefined(defaultValue)
+            ? isUndefined(defaultValues)
+                ? {}
+                : defaultValues
+            : defaultValue;
+        const fieldValues = getFieldsValues(fieldsRef.current);
+        const watchFields = watchFieldsRef.current;
+        if (isProxyEnabled) {
+            readFormState.current.dirty = true;
+        }
+        if (isString(fieldNames)) {
+            return assignWatchFields(fieldValues, fieldNames, watchFields, combinedDefaultValues);
+        }
+        if (isArray(fieldNames)) {
+            return fieldNames.reduce((previous, name) => {
+                let value = null;
+                if (isEmptyObject(fieldsRef.current) &&
+                    isObject(combinedDefaultValues)) {
+                    value = getDefaultValue(combinedDefaultValues, name);
+                }
+                else {
+                    value = assignWatchFields(fieldValues, name, watchFields, combinedDefaultValues);
+                }
+                return Object.assign(Object.assign({}, previous), { [name]: value });
+            }, {});
+        }
+        isWatchAllRef.current = true;
+        return ((!isEmptyObject(fieldValues) && fieldValues) ||
+            defaultValue ||
+            defaultValues);
+    }
+    function registerIntoFieldsRef(ref, validateOptions = {}) {
+        if (!ref.name) {
+            return console.warn('Missing name at', ref);
+        }
+        const { name, type, value } = ref;
+        const fieldAttributes = Object.assign({ ref }, validateOptions);
+        const fields = fieldsRef.current;
+        const isRadioOrCheckbox = isRadioInput(type) || isCheckBoxInput(type);
+        let currentField = fields[name];
+        if (isRadioOrCheckbox
+            ? currentField &&
+                isArray(currentField.options) &&
+                currentField.options.find(({ ref }) => value === ref.value)
+            : currentField) {
+            fields[name] = Object.assign(Object.assign({}, currentField), validateOptions);
+            return;
+        }
+        if (type) {
+            const mutationWatcher = onDomRemove(ref, () => removeEventListenerAndRef(fieldAttributes));
+            if (isRadioOrCheckbox) {
+                currentField = Object.assign({ options: [
+                        ...((currentField && currentField.options) || []),
+                        {
+                            ref,
+                            mutationWatcher,
+                        },
+                    ], ref: { type, name } }, validateOptions);
+            }
+            else {
+                currentField = Object.assign(Object.assign({}, fieldAttributes), { mutationWatcher });
+            }
+        }
+        else {
+            currentField = fieldAttributes;
+        }
+        fields[name] = currentField;
+        if (!isEmptyObject(defaultValues)) {
+            const defaultValue = getDefaultValue(defaultValues, name);
+            if (!isUndefined(defaultValue)) {
+                setFieldValue(name, defaultValue);
+            }
+        }
+        if (!isEmptyObject(validateOptions)) {
+            fieldsWithValidationRef.current.add(name);
+            if (!isOnSubmit && readFormState.current.isValid) {
+                if (validationSchema) {
+                    isSchemaValidateTriggeredRef.current = true;
+                    validateWithSchemaCurry(combineFieldValues(getFieldsValues(fields))).then(({ fieldErrors }) => {
+                        schemaErrorsRef.current = fieldErrors;
+                        if (isEmptyObject(schemaErrorsRef.current)) {
+                            render();
+                        }
+                    });
+                }
+                else {
+                    validateFieldCurry(currentField).then(error => {
+                        if (isEmptyObject(error)) {
+                            validFieldsRef.current.add(name);
+                        }
+                        if (validFieldsRef.current.size <=
+                            fieldsWithValidationRef.current.size) {
+                            render();
+                        }
+                    });
+                }
+            }
+        }
+        if (!defaultValuesRef.current[name]) {
+            defaultValuesRef.current[name] = getFieldValue(fields, currentField.ref);
+        }
+        if (!type) {
+            return;
+        }
+        const fieldToAttachListener = isRadioOrCheckbox && currentField.options
+            ? currentField.options[currentField.options.length - 1]
+            : currentField;
+        if (nativeValidation && validateOptions) {
+            attachNativeValidation(ref, validateOptions);
+        }
+        else {
+            attachEventListeners({
+                field: fieldToAttachListener,
+                isRadioOrCheckbox,
+                validateAndStateUpdate: validateAndUpdateStateRef.current,
+            });
+        }
+    }
+    function register(refOrValidateRule, validationOptions) {
+        if (isWindowUndefined || !refOrValidateRule) {
+            return;
+        }
+        if (validationOptions && isString(validationOptions.name)) {
+            registerIntoFieldsRef({ name: validationOptions.name }, validationOptions);
+            return;
+        }
+        if (isObject(refOrValidateRule) && 'name' in refOrValidateRule) {
+            registerIntoFieldsRef(refOrValidateRule, validationOptions);
+            return;
+        }
+        return (ref) => ref && registerIntoFieldsRef(ref, refOrValidateRule);
+    }
+    function unregister(names) {
+        if (!isEmptyObject(fieldsRef.current)) {
+            (isArray(names) ? names : [names]).forEach(fieldName => removeEventListenerAndRef(fieldsRef.current[fieldName], true));
+        }
+    }
+    const handleSubmit = (callback) => async (e) => {
+        if (e) {
+            e.preventDefault();
+            e.persist();
+        }
+        let fieldErrors;
+        let fieldValues;
+        const fields = fieldsRef.current;
+        if (readFormState.current.isSubmitting) {
+            isSubmittingRef.current = true;
+            render();
+        }
+        try {
+            if (validationSchema) {
+                fieldValues = getFieldsValues(fields);
+                const output = await validateWithSchemaCurry(combineFieldValues(fieldValues));
+                schemaErrorsRef.current = output.fieldErrors;
+                fieldErrors = output.fieldErrors;
+                fieldValues = output.result;
+            }
+            else {
+                const { errors, values, } = await Object.values(fields).reduce(async (previous, field) => {
+                    if (!field) {
+                        return previous;
+                    }
+                    const resolvedPrevious = await previous;
+                    const { ref, ref: { name }, } = field;
+                    if (!fields[name]) {
+                        return Promise.resolve(resolvedPrevious);
+                    }
+                    const fieldError = await validateFieldCurry(field);
+                    if (fieldError[name]) {
+                        resolvedPrevious.errors = Object.assign(Object.assign({}, resolvedPrevious.errors), fieldError);
+                        validFieldsRef.current.delete(name);
+                        return Promise.resolve(resolvedPrevious);
+                    }
+                    if (fieldsWithValidationRef.current.has(name)) {
+                        validFieldsRef.current.add(name);
+                    }
+                    resolvedPrevious.values[name] = getFieldValue(fields, ref);
+                    return Promise.resolve(resolvedPrevious);
+                }, Promise.resolve({
+                    errors: {},
+                    values: {},
+                }));
+                fieldErrors = errors;
+                fieldValues = values;
+            }
+            if (isEmptyObject(fieldErrors)) {
+                errorsRef.current = {};
+                await callback(combineFieldValues(fieldValues), e);
+            }
+            else {
+                if (submitFocusError) {
+                    Object.keys(fieldErrors).reduce((previous, current) => {
+                        const field = fields[current];
+                        if (field && field.ref.focus && previous) {
+                            field.ref.focus();
+                            return false;
+                        }
+                        return previous;
+                    }, true);
+                }
+                errorsRef.current = fieldErrors;
+            }
+        }
+        finally {
+            isSubmittedRef.current = true;
+            isSubmittingRef.current = false;
+            submitCountRef.current = submitCountRef.current + 1;
+            render();
+        }
+    };
+    const resetRefs = () => {
+        errorsRef.current = {};
+        defaultValuesRef.current = {};
+        schemaErrorsRef.current = {};
+        touchedFieldsRef.current = new Set();
+        watchFieldsRef.current = new Set();
+        dirtyFieldsRef.current = new Set();
+        validFieldsRef.current = new Set();
+        isWatchAllRef.current = false;
+        isSubmittedRef.current = false;
+        isDirtyRef.current = false;
+        isSchemaValidateTriggeredRef.current = false;
+        submitCountRef.current = 0;
+    };
+    const reset = useCallback((values) => {
+        const fieldsKeyValue = Object.entries(fieldsRef.current);
+        for (const [, value] of fieldsKeyValue) {
+            if (value && value.ref && value.ref.closest) {
+                try {
+                    value.ref.closest('form').reset();
+                    break;
+                }
+                catch (_a) { }
+            }
+        }
+        resetRefs();
+        if (values) {
+            fieldsKeyValue.forEach(([key]) => setFieldValue(key, getDefaultValue(values, key)));
+            defaultValuesRef.current = Object.assign({}, values);
+        }
+        render();
+    }, [render, setFieldValue]);
+    const getValues = (payload) => {
+        const fieldValues = getFieldsValues(fieldsRef.current);
+        const outputValues = isEmptyObject(fieldValues)
+            ? defaultValues
+            : fieldValues;
+        return payload && payload.nest
+            ? combineFieldValues(outputValues)
+            : outputValues;
+    };
+    useEffect(() => () => {
+        isUnMount.current = true;
+        fieldsRef.current &&
+            Object.values(fieldsRef.current).forEach((field) => removeEventListenerAndRef(field, true));
+    }, [removeEventListenerAndRef]);
+    const formState = Object.assign({ dirty: isDirtyRef.current, isSubmitted: isSubmittedRef.current, submitCount: submitCountRef.current, touched: [...touchedFieldsRef.current], isSubmitting: isSubmittingRef.current }, (isOnSubmit
+        ? {
+            isValid: isSubmittedRef.current && isEmptyObject(errorsRef.current),
+        }
+        : {
+            isValid: validationSchema
+                ? isSchemaValidateTriggeredRef.current &&
+                    isEmptyObject(schemaErrorsRef.current)
+                : fieldsWithValidationRef.current.size
+                    ? !isEmptyObject(fieldsRef.current) &&
+                        validFieldsRef.current.size >=
+                            fieldsWithValidationRef.current.size
+                    : !isEmptyObject(fieldsRef.current),
+        }));
+    return {
+        register: useCallback(register, []),
+        unregister: useCallback(unregister, [removeEventListenerAndRef]),
+        handleSubmit,
+        watch,
+        reset,
+        clearError,
+        setError: useCallback(setError, []),
+        setValue,
+        triggerValidation,
+        getValues,
+        errors: errorsRef.current,
+        formState: isProxyEnabled
+            ? new Proxy(formState, {
+                get: (obj, prop) => {
+                    if (prop in obj) {
+                        readFormState.current[prop] = true;
+                        return obj[prop];
+                    }
+                    return {};
+                },
+            })
+            : formState,
+    };
+}
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+const FormGlobalContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["createContext"])(null);
+function useFormContext() {
+    return Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(FormGlobalContext);
+}
+function FormContext(props) {
+    const { children, formState, errors } = props, restMethods = __rest(props, ["children", "formState", "errors"]);
+    const restRef = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(restMethods);
+    return (Object(react__WEBPACK_IMPORTED_MODULE_0__["createElement"])(FormGlobalContext.Provider, { value: Object.assign(Object.assign({}, restRef.current), { formState, errors }) }, children));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (useForm);
+
+
+
+/***/ }),
+
 /***/ "./node_modules/react-is/cjs/react-is.development.js":
 /*!***********************************************************!*\
   !*** ./node_modules/react-is/cjs/react-is.development.js ***!
@@ -36370,6 +38146,743 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/regenerator-runtime/runtime.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var runtime = (function (exports) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  exports.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  exports.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  exports.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  exports.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return Promise.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return Promise.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new Promise(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  exports.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  exports.async = function(innerFn, outerFn, self, tryLocsList) {
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList)
+    );
+
+    return exports.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        // Note: ["return"] must be used for ES3 parsing compatibility.
+        if (delegate.iterator["return"]) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  exports.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  exports.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+
+  // Regardless of whether this script is executing as a CommonJS module
+  // or not, return the runtime object so that we can declare the variable
+  // regeneratorRuntime in the outer scope, which allows this module to be
+  // injected easily by `bin/regenerator --include-runtime script.js`.
+  return exports;
+
+}(
+  // If this script is executing as a CommonJS module, use module.exports
+  // as the regeneratorRuntime namespace. Otherwise create a new empty
+  // object. Either way, the resulting object will be used to initialize
+  // the regeneratorRuntime variable at the top of this file.
+   true ? module.exports : undefined
+));
+
+try {
+  regeneratorRuntime = runtime;
+} catch (accidentalStrictMode) {
+  // This module should not be running in strict mode, so the above
+  // assignment should always work unless something is misconfigured. Just
+  // in case runtime.js accidentally runs in strict mode, we can escape
+  // strict mode using a global Function call. This could conceivably fail
+  // if a Content Security Policy forbids using Function, but in that case
+  // the proper solution is to fix the accidental strict mode problem. If
+  // you've misconfigured your bundler to force strict mode and applied a
+  // CSP to forbid Function, and you're not willing to fix either of those
+  // problems, please detail your unique predicament in a GitHub issue.
+  Function("r", "regeneratorRuntime = r")(runtime);
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/resolve-pathname/esm/resolve-pathname.js":
 /*!***************************************************************!*\
   !*** ./node_modules/resolve-pathname/esm/resolve-pathname.js ***!
@@ -37843,6 +40356,563 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/split-on-first/index.js":
+/*!**********************************************!*\
+  !*** ./node_modules/split-on-first/index.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = (string, separator) => {
+	if (!(typeof string === 'string' && typeof separator === 'string')) {
+		throw new TypeError('Expected the arguments to be of type `string`');
+	}
+
+	if (separator === '') {
+		return [string];
+	}
+
+	const separatorIndex = string.indexOf(separator);
+
+	if (separatorIndex === -1) {
+		return [string];
+	}
+
+	return [
+		string.slice(0, separatorIndex),
+		string.slice(separatorIndex + separator.length)
+	];
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/strict-uri-encode/index.js":
+/*!*************************************************!*\
+  !*** ./node_modules/strict-uri-encode/index.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+module.exports = str => encodeURIComponent(str).replace(/[!'()*]/g, x => `%${x.charCodeAt(0).toString(16).toUpperCase()}`);
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/addStyles.js":
+/*!****************************************************!*\
+  !*** ./node_modules/style-loader/lib/addStyles.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getTarget = function (target, parent) {
+  if (parent){
+    return parent.querySelector(target);
+  }
+  return document.querySelector(target);
+};
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(target, parent) {
+                // If passing function in options, then use it for resolve "head" element.
+                // Useful for Shadow Root style i.e
+                // {
+                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
+                // }
+                if (typeof target === 'function') {
+                        return target();
+                }
+                if (typeof memo[target] === "undefined") {
+			var styleTarget = getTarget.call(this, target, parent);
+			// Special case to return head of iframe instead of iframe itself
+			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[target] = styleTarget;
+		}
+		return memo[target]
+	};
+})();
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(/*! ./urls */ "./node_modules/style-loader/lib/urls.js");
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+        if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertAt.before, target);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+
+	if(options.attrs.nonce === undefined) {
+		var nonce = getNonce();
+		if (nonce) {
+			options.attrs.nonce = nonce;
+		}
+	}
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function getNonce() {
+	if (false) {}
+
+	return __webpack_require__.nc;
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = typeof options.transform === 'function'
+		 ? options.transform(obj.css) 
+		 : options.transform.default(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/urls.js":
+/*!***********************************************!*\
+  !*** ./node_modules/style-loader/lib/urls.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/tiny-invariant/dist/tiny-invariant.esm.js":
 /*!****************************************************************!*\
   !*** ./node_modules/tiny-invariant/dist/tiny-invariant.esm.js ***!
@@ -38005,12 +41075,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ProductDetail__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/ProductDetail */ "./resources/js/components/ProductDetail.js");
 /* harmony import */ var _components_Cart__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Cart */ "./resources/js/components/Cart.js");
 /* harmony import */ var _components_Checkout__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Checkout */ "./resources/js/components/Checkout.js");
+/* harmony import */ var _components_InfoOrder__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/InfoOrder */ "./resources/js/components/InfoOrder.js");
 
 
  // Layout
 
 
  // Page
+
 
 
 
@@ -38028,6 +41100,8 @@ function App() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Home__WEBPACK_IMPORTED_MODULE_5__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "/cart"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Cart__WEBPACK_IMPORTED_MODULE_7__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    path: "/checkout/order-info"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_InfoOrder__WEBPACK_IMPORTED_MODULE_9__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "/checkout"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Checkout__WEBPACK_IMPORTED_MODULE_8__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Layouts_Footer__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
 }
@@ -38140,7 +41214,7 @@ var Cart = function Cart(props) {
     width: "15%"
   }, "Price (VN\u0110)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
     width: "15%"
-  }, "Total (VN\u0110)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Action"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, cart_item_storage.length > 0 ? cart_item_storage.map(function (product, i) {
+  }, "Total (VN\u0110)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Action"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, cart_item_storage ? cart_item_storage.map(function (product, i) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_template_Cart_CartItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
       key: i,
       item_number: i + 1,
@@ -38183,14 +41257,106 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/react-hook-form.es.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _template_Checkout_CheckoutItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./template/Checkout/CheckoutItem */ "./resources/js/components/template/Checkout/CheckoutItem.js");
+/* harmony import */ var _template_Product_Message__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./template/Product/Message */ "./resources/js/components/template/Product/Message.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var Checkout = function Checkout(props) {
+
+
+
+
+
+var BASE_URL = 'http://127.0.0.1:8000';
+
+var Checkout = function Checkout(props, state) {
+  var cart_item_storage = JSON.parse(localStorage.getItem('cart_items'));
+
+  if (!cart_item_storage) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
+      to: "/"
+    });
+  }
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
+      _useState2 = _slicedToArray(_useState, 2),
+      total_amount = _useState2[0],
+      setCart = _useState2[1]; // Total amount
+
+
+  var total = 0;
+  var price_default = 0;
+
+  if (cart_item_storage) {
+    cart_item_storage.map(function (product, i) {
+      return total += product.price * product.qty;
+    });
+    total_amount = total;
+  }
+
+  var _useForm = Object(react_hook_form__WEBPACK_IMPORTED_MODULE_2__["default"])(),
+      register = _useForm.register,
+      handleSubmit = _useForm.handleSubmit;
+
+  var messsage_display = 0;
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      toOrderInfo = _useState4[0],
+      setToOrderInfo = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
+      _useState6 = _slicedToArray(_useState5, 2),
+      orderId = _useState6[0],
+      setDataToOrderId = _useState6[1]; // Form Validation
+
+
+  var onSubmit = function onSubmit(values) {
+    if (values === undefined || values === null) {
+      return false;
+    }
+
+    var data = {
+      full_name: values.full_name,
+      phone: values.phone,
+      address: values.address,
+      email: values.email,
+      message: values.message,
+      county: values.county,
+      province: values.province,
+      wards: values.wards,
+      product: cart_item_storage,
+      total_amount: total_amount
+    };
+    axios__WEBPACK_IMPORTED_MODULE_3___default.a.post(BASE_URL + '/api/checkout', data).then(function (res) {
+      setDataToOrderId(res.data.response.order_id);
+      setTimeout(function () {
+        return setToOrderInfo(true);
+      }, 100);
+    })["catch"](function (error) {
+      return console.log(error);
+    });
+    return false;
+  };
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container wrap_checkout"
+  }, toOrderInfo ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
+    to: "/checkout/order-info?order_id=" + orderId
+  }) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit(onSubmit)
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    "class": "row"
+    className: "row"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-7 wrap_checkout_cartleft"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -38198,53 +41364,87 @@ var Checkout = function Checkout(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     className: "form-control",
-    placeholder: "Full Name"
+    placeholder: "Full Name",
+    name: "full_name",
+    ref: register,
+    required: true
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "from_control"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "email",
+    className: "form-control",
+    placeholder: "Email",
+    name: "email",
+    ref: register,
+    required: true
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "from_control"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     className: "form-control",
-    placeholder: "Email"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "from_control"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "form-control",
-    placeholder: "Phone"
+    placeholder: "Phone",
+    name: "phone",
+    ref: register,
+    required: true
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "from_control"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-    "class": "form-control"
+    className: "form-control",
+    name: "province",
+    ref: register
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Province"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Province 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Province 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Province 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Province 4"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "from_control"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-    "class": "form-control"
+    className: "form-control",
+    name: "county",
+    ref: register
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "County"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "County 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "County 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "County 3"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "from_control"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-    "class": "form-control"
+    className: "form-control",
+    name: "wards",
+    ref: register
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Wards"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Wards 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Wards 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Wards 4"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "from_control"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
     className: "form-control",
-    placeholder: "Address"
+    placeholder: "Address",
+    name: "address",
+    ref: register,
+    required: true
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "from_control"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
     className: "form-control",
     placeholder: "Message",
-    rows: "10"
+    rows: "10",
+    name: "message",
+    ref: register
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-5 wrap_checkout_cartright"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    "class": "cart_info"
+    className: "cart_info"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "YOUR ORDER"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
     className: "table table-bordered"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Product"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-    width: "40%"
-  }, "Total (VN\u0110)"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "AAA"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "AAA")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Total"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "5.000.000")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    "class": "btn btn-success"
-  }, "CHECK OUT")))));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Product"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Qty"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+    width: "30%"
+  }, "Price (VN\u0110)"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, cart_item_storage ? cart_item_storage.map(function (product, i) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_template_Checkout_CheckoutItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      key: i,
+      data: product
+    });
+  }) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Total"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+    colSpan: "2",
+    className: "text-center"
+  }, new Intl.NumberFormat('de-DE', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  }).format(total_amount))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn btn-success",
+    onClick: function onClick() {
+      return onSubmit();
+    }
+  }, "CHECK OUT"))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Checkout);
@@ -38266,9 +41466,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Template_Product_ProductItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Template/Product/ProductItem */ "./resources/js/components/Template/Product/ProductItem.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _Sliders__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Sliders */ "./resources/js/components/Sliders.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38286,6 +41487,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -38316,7 +41518,7 @@ function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_3___default.a.get(BASE_URL + '/api/products').then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.get(BASE_URL + '/api/products').then(function (res) {
         var results = res.data;
 
         if (results) {
@@ -38337,7 +41539,7 @@ function (_Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Sliders__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row justify-content-center"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "S\u1EA2N PH\u1EA8M M\u1EDAI"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "products"
@@ -38381,6 +41583,154 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/InfoOrder.js":
+/*!**********************************************!*\
+  !*** ./resources/js/components/InfoOrder.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/react-hook-form.es.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! query-string */ "./node_modules/query-string/index.js");
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(query_string__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _template_Checkout_CheckoutItem__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./template/Checkout/CheckoutItem */ "./resources/js/components/template/Checkout/CheckoutItem.js");
+
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+var BASE_URL = 'http://127.0.0.1:8000';
+
+var InfoOrder = function InfoOrder(props) {
+  var queryString = __webpack_require__(/*! query-string */ "./node_modules/query-string/index.js");
+
+  var orderId = queryString.parse(location.search).order_id;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
+    data: []
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      data = _useState2[0],
+      dataSet = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      is_loaded = _useState4[0],
+      setLoading = _useState4[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    (function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              try {
+                axios__WEBPACK_IMPORTED_MODULE_4___default.a.get(BASE_URL + '/api/order/' + orderId).then(function (results) {
+                  var res = results.data.response;
+                  dataSet(res);
+                  setLoading(true);
+                })["catch"](function (error) {
+                  return console.log(error);
+                });
+              } catch (e) {
+                console.error(e);
+              }
+
+            case 1:
+            case "end":
+              return _context.stop();
+          }
+        }
+      });
+    })(); // Remove cart
+
+
+    localStorage.removeItem("cart_items");
+  }, []);
+  var address = [];
+  var product = [];
+  var total_amount = 0;
+  var total = 0;
+
+  if (is_loaded == true) {
+    address = JSON.parse(data.address);
+    product = JSON.parse(data.product);
+    product.map(function (data, i) {
+      return total += data.price * data.qty;
+    });
+    total_amount = total;
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "container wrap_checkout_info"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Your order has been successfully placed. We will contact you as soon as possible"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Order: #", data.order_id), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
+    className: "table table-bordered"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Product"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Qty"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Price")), product.map(function (product, i) {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_template_Checkout_CheckoutItem__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      key: i,
+      data: product
+    });
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, "Total"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
+    colSpan: "2",
+    className: "total text-center"
+  }, new Intl.NumberFormat('de-DE', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  }).format(total_amount) + ' đ')))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Additional Infomation"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "additional_infomation"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, data.message)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Customer Details"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
+    className: "table table-bordered"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
+    width: "10%",
+    className: "text-center"
+  }, "Phone"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, data.phone)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
+    className: "text-center"
+  }, "Email"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, data.email)))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Billing Address"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "additional_infomation"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
+    className: "table table-bordered"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
+    width: "10%",
+    className: "text-center"
+  }, "Full Name"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, data.name)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
+    className: "text-center"
+  }, "Address"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, is_loaded == true ? address.address : ''))))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Shipping Address"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "additional_infomation"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
+    className: "table table-bordered"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
+    width: "10%",
+    className: "text-center"
+  }, "Full Name"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, data.name)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
+    className: "text-center"
+  }, "Address"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, is_loaded == true ? address.address : ''))))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (InfoOrder);
 
 /***/ }),
 
@@ -38504,8 +41854,8 @@ function (_Component) {
   }
 
   _createClass(Header, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       var $this = this;
       var carts = JSON.parse(localStorage.getItem('cart_items'));
 
@@ -38782,6 +42132,101 @@ function (_Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Sliders.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/Sliders.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_animated_slider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-animated-slider */ "./node_modules/react-animated-slider/build/index.js");
+/* harmony import */ var react_animated_slider__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_animated_slider__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_animated_slider_build_horizontal_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-animated-slider/build/horizontal.css */ "./node_modules/react-animated-slider/build/horizontal.css");
+/* harmony import */ var react_animated_slider_build_horizontal_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_animated_slider_build_horizontal_css__WEBPACK_IMPORTED_MODULE_5__);
+
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+var BASE_URL = 'http://127.0.0.1:8000';
+
+var Sliders = function Sliders(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
+      _useState2 = _slicedToArray(_useState, 2),
+      slider = _useState2[0],
+      setDataforSlider = _useState2[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    (function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              try {
+                axios__WEBPACK_IMPORTED_MODULE_4___default.a.get(BASE_URL + '/api/slider?position=1').then(function (results) {
+                  setDataforSlider(results.data.response);
+                })["catch"](function (error) {
+                  return console.log(error);
+                });
+              } catch (e) {
+                console.error(e);
+              }
+
+            case 1:
+            case "end":
+              return _context.stop();
+          }
+        }
+      });
+    })(); // Remove cart
+
+
+    localStorage.removeItem("cart_items");
+  }, []);
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "wrapper_slider"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "slider-left"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_animated_slider__WEBPACK_IMPORTED_MODULE_3___default.a, null, console.log(slider), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "slider-item"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+    src: "https://cf.shopee.vn/file/3a50c413ca4700ed552e35d44a9ade42_xxhdpi"
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "slider-item"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+    src: "https://cf.shopee.vn/file/3a50c413ca4700ed552e35d44a9ade42_xxhdpi"
+  })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "slider-right"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+    src: "https://cf.shopee.vn/file/3a50c413ca4700ed552e35d44a9ade42_xxhdpi"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+    src: "https://cf.shopee.vn/file/3a50c413ca4700ed552e35d44a9ade42_xxhdpi"
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Sliders);
+
+/***/ }),
+
 /***/ "./resources/js/components/Template/Product/ProductItem.js":
 /*!*****************************************************************!*\
   !*** ./resources/js/components/Template/Product/ProductItem.js ***!
@@ -38971,7 +42416,6 @@ var CartItem = function CartItem(props) {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0
   }).format(props.data.price * props.data.qty)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "javascript:void(0)",
     onClick: function onClick() {
       return deleteCart(props.data.id);
     }
@@ -38979,6 +42423,35 @@ var CartItem = function CartItem(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CartItem);
+
+/***/ }),
+
+/***/ "./resources/js/components/template/Checkout/CheckoutItem.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/template/Checkout/CheckoutItem.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var CheckoutItem = function CheckoutItem(props) {
+  var data = props.data;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "name"
+  }, data.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "pull-right"
+  }, data.qty)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, new Intl.NumberFormat('de-DE', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  }).format(data.price)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (CheckoutItem);
 
 /***/ }),
 

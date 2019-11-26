@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ProductItem from './Template/Product/ProductItem';
+import Slider from './Sliders';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 
@@ -32,6 +33,7 @@ export default class Home extends Component {
     render() {
         return (
             <div className="container">
+                <Slider/>
                 <div className="row justify-content-center">
                     <h2>SẢN PHẨM MỚI</h2>
                     <div className="products">

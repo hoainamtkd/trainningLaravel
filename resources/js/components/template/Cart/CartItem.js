@@ -66,7 +66,7 @@ const CartItem = (props) => {
 		        	}).format(props.data.price * props.data.qty)
 	            }
             </td> 
-            <td><a href="javascript:void(0)" onClick={() => deleteCart(props.data.id)}>Delete</a></td>
+            <td><a onClick={() => deleteCart(props.data.id)}>Delete</a></td>
         </tr>
   	);
 };

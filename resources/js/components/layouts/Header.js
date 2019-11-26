@@ -15,8 +15,8 @@ export default class Header extends Component {
             is_loaded : false
         }; 
     }
-
-    componentWillMount(){ 
+    
+    componentDidMount(){ 
         const $this = this;   
         const carts = JSON.parse(localStorage.getItem('cart_items'));
         if(carts){ 

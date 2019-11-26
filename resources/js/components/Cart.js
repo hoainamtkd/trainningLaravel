@@ -7,7 +7,7 @@ const Cart = (props) => {
     const [id , deleteCart] = useState(0);
 
     const cart_item_storage = JSON.parse(localStorage.getItem('cart_items'));
-    
+
     let [total_amount, setCart] = useState(0); 
     useEffect(() => { 
         if(id !== 0){
@@ -65,7 +65,7 @@ const Cart = (props) => {
                 </thead>
                 <tbody>
                     {  
-                        (cart_item_storage.length > 0) ? (
+                        (cart_item_storage) ? (
                             cart_item_storage.map((product, i) =>  
                                 <CartItem
                                     key={i}

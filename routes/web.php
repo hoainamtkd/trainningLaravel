@@ -53,6 +53,9 @@ Route::prefix('admincp')->middleware('auth')->group(function () {
 	Route::get('review/approve/{id}/unapprove', 'Inside\ReviewController@getUnApprove')->name('review-unapprove');
 	Route::get('review/approve/delete/{id}', 'Inside\ReviewController@delete')->name('review-delete'); 
 
+	Route::get('order', 'Inside\OrderController@index')->name('order'); 
+	Route::get('order/{id}', 'Inside\OrderController@edit')->name('order-detail');
+	Route::post('order/{id}/update', 'Inside\OrderController@getUpdate')->name('order-update'); 
 });
 
 // Auth Router

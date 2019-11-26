@@ -15,6 +15,8 @@ import Home from './components/Home';
 import ProductDetail from './components/ProductDetail';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
+import InfoOrder from './components/InfoOrder';
+
 
 export default function App() {
   	return (
@@ -32,9 +34,13 @@ export default function App() {
 		          	<Route path="/cart">
 		            	<Cart />
 		          	</Route>
+		          	<Route path="/checkout/order-info">
+		            	<InfoOrder />
+		          	</Route>
 		          	<Route path="/checkout">
 		            	<Checkout />
 		          	</Route>
+		          	
 		    	</Switch>
 		    	<Footer/>
 	      	</main>

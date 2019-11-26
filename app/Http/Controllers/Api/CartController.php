@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class Cart extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class Cart extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**

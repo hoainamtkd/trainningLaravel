@@ -4,8 +4,31 @@ namespace App\Http\Controllers\Inside;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Order;
 
-class Order extends Controller
+class OrderController extends Controller
 {
-    //
+    public function index()
+    {
+    	$order = Order::paginate(10);
+    	$data = array(
+    		'orders' => $order
+     	);
+    	return view('cpanel.order.index',$data);   
+    }
+
+    public function edit(Request $req , $id){
+    	$order = Order::find($id);
+    	$data = array(
+    		'orders' => $order
+     	);
+    	return view('cpanel.order.edit',$data);   
+    }
+
+    public function getUpdate(Request $req , $id){
+    	$order = Order::find($id);
+    	$order->order_status = $req->input('order_status');
+    	$order->update();
+    	return redirect()->route('order');  
+    }
 }
