@@ -3,6 +3,72 @@
 @section('content')
 <div class="wrap-main"> 
 	<p>#ORDER</p>
+	<div class="form_filter">
+		<form method="GET" action="{{ route('order') }}">
+			@csrf
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						@php(
+							$req = app('request')
+						)
+						<input type="hidden" name="search" value="true">
+						<td>
+							<input 
+								type="text" 
+								name="name" 
+								value="{{ $req->input('name') }}" 
+								placeholder="Enter name customer" 
+								class="form-control"
+							>
+						</td>
+						<td>
+							<select name="order_status" class="form-control">
+								<option value="all" 
+								{{ 
+									$req->input('order_status') == 'all'
+									? "selected='selected'" 
+									: '' 
+								}}
+								>
+								-----
+								</option>
+								@php(
+									$order_status_list = array(
+										"Chờ xác nhận" ,
+										"Đã xác nhận" ,
+										"Đang giao hàng" ,
+										"Giao hàng thành công" ,
+										"Giao hàng thất bại" ,
+									)
+								)
+								@foreach($order_status_list as $k => $order_status)
+									<option 
+										value="{{ $k }}" 
+										{{ 
+											(
+												$req->input('order_status') == $k  
+												&& $req->input('order_status') != 'all'
+											)
+											? "selected='selected'" 
+											: '' 
+										}}
+									>
+									{{ $order_status }}
+									</option>
+								@endforeach 
+							</select>
+						</td>
+						<td class="text-center">
+							<button type="submit" class="search_box btn btn-success form-control">
+								Search
+							</button>
+						</td> 
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
 	@if($orders)
 		<table class="table table-bordered">
 			<thead>

@@ -65,6 +65,17 @@ img{
 			width: 200px;
 		}
 	}
+	.form_filter{
+		button{
+			&[type="submit"]{
+				background:green;
+				padding: 5px;
+				margin-top: 0px;
+				color: #ffffff;
+				width: 200px;
+			}
+		}
+	}
 	.form-control{
 		height: auto;
 	}

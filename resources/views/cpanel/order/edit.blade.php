@@ -3,6 +3,7 @@
 @section('content')
 <div class="wrap-main"> 
 	<p><a href="{{ route('order') }}">Back</a></p>
+	<p>#OrderID: {{ $orders['order_id'] }}</p>
 	<p>
 		@if($orders['order_status'] == 0)
 			<span class="badge badge-secondary">Chờ xác nhận</span>

@@ -2,6 +2,9 @@ import React, { Component , useState } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { actGetProductRequest } from '../actions/index';
+
 
 import ThumbnailItem from './template/Product/ThumbnailItem';
 import RelateProduct from './template/Product/RelateProduct';
@@ -75,6 +78,7 @@ export default class ProductDetail extends Component {
     }
     
     componentDidMount(){
+        this.props.getProductbyID();
         const _id = this.props.match.params.id;
         axios.get( BASE_URL + '/api/products/'+_id)
         .then(res => {
@@ -97,6 +101,7 @@ export default class ProductDetail extends Component {
 
     render() {  
         const data = this.state; 
+        console.log(this.props);
         return (
             <div className="container wrap_product_single">
                 {

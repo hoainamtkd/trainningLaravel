@@ -5,6 +5,59 @@
 	<p>
 		<a href="{{ route('product-add') }}">Add Product</a>
 	</p>
+	<div class="form_filter">
+		<form method="GET" action="{{ route('product') }}">
+			@csrf
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						@php($req = app('request'))
+						<input type="hidden" name="search" value="true">
+						<td>
+							<input 
+								type="text" 
+								name="title" 
+								value="{{ $req->input('title') }}" 
+								placeholder="Enter title" 
+								class="form-control"
+							>
+						</td>
+						<td>
+							<select name="category" class="form-control">
+								<option value="">-----</option>
+								@if(@$category)
+									@foreach($category as $cat)
+										<option value="{{ $cat['category_id'] }}" {{ $req->input('category') == $cat['category_id'] ? 'selected="selected"' : '' }} >
+											{{ $cat['category_name'] }}
+										</option>
+									@endforeach
+								@endif
+							</select>
+						</td>
+						<td>
+							<input 
+								type="text" 
+								name="price_from" 
+								placeholder="Price From" 
+								class="form-control"
+								value="{{ $req->input('price_from') }}" 
+							>
+						</td>
+						<td>
+							<input 
+								type="text" 
+								name="price_to" 
+								placeholder="Price To" 
+								class="form-control"
+								value="{{ $req->input('price_to') }}"
+							>
+						</td>
+						<td><button type="submit" class="search_box btn btn-success form-control">Search</button></td> 
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
 	@if($products)
 		<table class="table table-bordered">
 			<thead>
@@ -50,7 +103,7 @@
 					@endforeach
 				@else
 					<tr>
-						<td colspan="6">Không tìm thấy dữ liệu.</td>
+						<td colspan="7">Không tìm thấy dữ liệu.</td>
 					</tr>
 				@endif
 			</tbody>
