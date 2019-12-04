@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Inside;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Str;
+use Illuminate\Support\Str; 
 // Model
 use App\Product;
 use App\Category;
@@ -13,13 +13,71 @@ class ProductController extends Controller
 {
 	public function __construct() {}
 
-    public function getProducts() {
-        $aData = array();
-    	$aProduct = Product::leftJoin('tbl_category', 'tbl_category.category_id', '=', 'tbl_product.category_id')
-        ->select('product_id', 'product_name', 'product_description' ,'product_short_description', 'product_price', 'product_price_sales', 'feature_image','category_name')
-        ->paginate(10);
+    public function getProducts(Request $req) {
+        $aData = array(); 
+    	$sqlProduct = Product::leftJoin(
+            'tbl_category', 
+            'tbl_category.category_id', 
+            '=', 
+            'tbl_product.category_id'
+        );
+        $isSearch = $req->input('search');
+        if($isSearch){
+            $title = $req->input('title');
+            $category = $req->input('category');
+            $price_from = intval($req->input('price_from'));
+            $price_to = intval($req->input('price_to')); 
+            // search title
+            if($title){
+                $sqlProduct = $sqlProduct->where(
+                    'tbl_product.product_name', 
+                    'LIKE' , 
+                    '%'.$title.'%'
+                );
+            }
+            // search category
+            if($category){
+                $sqlProduct = $sqlProduct->where(
+                    'tbl_product.category_id', 
+                    '=' , 
+                    $category
+                );
+            }
+            // search price
+            if($price_from && $price_to){
+                $sqlProduct = $sqlProduct->whereBetween(
+                    'tbl_product.product_price', 
+                    [$price_from, $price_to]
+                );
+            }elseif($price_from && !$price_to){
+                $sqlProduct = $sqlProduct->where(
+                    'tbl_product.product_price', 
+                    '>=' ,
+                    $price_from
+                );
+            }elseif(!$price_from && $price_to){
+                $sqlProduct = $sqlProduct->where(
+                    'tbl_product.product_price', 
+                    '<=' , 
+                    $price_to
+                );
+            }
+        }
+        $aProduct = $sqlProduct->select(
+            'product_id', 
+            'product_name', 
+            'product_description',
+            'product_short_description', 
+            'product_price', 
+            'product_price_sales', 
+            'feature_image',
+            'category_name'
+        )
+        ->paginate(10);  
+        $aCategory = Category::get()->toArray();
         if($aProduct){
             $aData['products'] = $aProduct;
+            $aData['category'] = $aCategory;
         }
     	return view('cpanel.product.index', $aData);
     }

@@ -8,12 +8,34 @@ use App\Order;
 
 class OrderController extends Controller
 {
-    public function index()
-    {
-    	$order = Order::paginate(10);
+    public function index(Request $req)
+    {    
+        $sqlOrder = new Order();
+        $isSearch = $req->input('search');
+        if($isSearch){
+            $status = $req->input('order_status');
+            if($status != 'all'){
+                $sqlOrder = $sqlOrder->where(
+                    'order_status',
+                    '=',
+                    $status
+                );
+            }
+
+            $name = $req->input('name');
+            if($name){
+                $sqlOrder = $sqlOrder->where(
+                    'name',
+                    'like',
+                    '%'.$name.'%'
+                );
+            }
+        }
+        $order = $sqlOrder->paginate(10);
     	$data = array(
     		'orders' => $order
      	);
+
     	return view('cpanel.order.index',$data);   
     }
 
