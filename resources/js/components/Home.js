@@ -5,7 +5,7 @@ import Slider from './Sliders';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
-import { actFetchProductsRequest } from '../actions/index';
+import { actFetchProductsRequest , actFetchSlider } from '../actions/index';
 const BASE_URL = 'http://127.0.0.1:8000';
 
 class Home extends Component {
@@ -13,44 +13,23 @@ class Home extends Component {
     componentDidMount(){
         this.props.fetchAllProducts();
     }
+    componentWillMount(){
+        this.props.getSliderOnHome();
+    }
 
-    render() { 
+    render() {  
         const { products } = this.props.products; 
+        const { main_slider } = this.props.slider;
+        const { aside_slider } = this.props.slider;
+
         return (
             <div className="container">
-                <Slider/>
+                <Slider 
+                    main_slider = { main_slider }
+                    aside_slider= { aside_slider }
+                />
                 <div className="row justify-content-center">
                     <h2>SẢN PHẨM MỚI</h2>
-                    <div className="products">
-                        {
-                            products ? 
-                            products.map((product, i) => 
-                                <ProductItem
-                                    key={i}
-                                    data={product}
-                                />
-                            )
-                            : ''
-                        }
-                    </div>
-                </div>
-                <div className="row justify-content-center">
-                    <h2>SẢN PHẨM NỔI BẬT</h2>
-                    <div className="products">
-                        {
-                            products ? 
-                            products.map((product, i) => 
-                                <ProductItem
-                                    key={i}
-                                    data={product}
-                                />
-                            )
-                            : ''
-                        }
-                    </div>
-                </div>
-                <div className="row justify-content-center">
-                    <h2>SẢN PHẨM ĐÃ XEM</h2>
                     <div className="products">
                         {
                             products ? 
@@ -69,9 +48,10 @@ class Home extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = state => { 
     return {
-        products: state.products
+        products: state.products,
+        slider: state.slider
     }
 }
 
@@ -79,6 +59,9 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchAllProducts : () => {
             dispatch(actFetchProductsRequest());
+        },
+        getSliderOnHome : () => {
+            dispatch(actFetchSlider());
         }
     }
 }

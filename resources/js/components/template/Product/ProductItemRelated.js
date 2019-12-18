@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
 export default class ProductItemRelated extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const data = this.props.data;
         const background = { 

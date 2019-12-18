@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::prefix('admincp')->middleware('auth')->group(function () {
 	// Dashboard
 	Route::get('dashboard', 'Inside\DashboardController@index')->name('dashboard');
-	
+
 	// Product
 	Route::get('product', 'Inside\ProductController@getProducts')->name('product');
 	Route::get('product/add', 'Inside\ProductController@getAdd')->name('product-add');
@@ -48,14 +48,14 @@ Route::prefix('admincp')->middleware('auth')->group(function () {
 	Route::get('slider/delete/{id}', 'Inside\SliderController@delete')->name('slider-delete');
 
 	// Review
-	Route::get('review', 'Inside\ReviewController@index')->name('review'); 
+	Route::get('review', 'Inside\ReviewController@index')->name('review');
 	Route::get('review/approve/{id}', 'Inside\ReviewController@getApprove')->name('review-approve');
 	Route::get('review/approve/{id}/unapprove', 'Inside\ReviewController@getUnApprove')->name('review-unapprove');
-	Route::get('review/approve/delete/{id}', 'Inside\ReviewController@delete')->name('review-delete'); 
+	Route::get('review/approve/delete/{id}', 'Inside\ReviewController@delete')->name('review-delete');
 
-	Route::get('order', 'Inside\OrderController@index')->name('order'); 
+	Route::get('order', 'Inside\OrderController@index')->name('order');
 	Route::get('order/{id}', 'Inside\OrderController@edit')->name('order-detail');
-	Route::post('order/{id}/update', 'Inside\OrderController@getUpdate')->name('order-update'); 
+	Route::post('order/{id}/update', 'Inside\OrderController@getUpdate')->name('order-update');
 });
 
 // Auth Router

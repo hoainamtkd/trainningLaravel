@@ -28,7 +28,9 @@ export default class RelateProduct extends Component {
                 }
             }
         })
-        .catch(error => console.log(error));
+        .catch(error => 
+            console.log(error)
+        );
     }
 
     render() { 
@@ -41,7 +43,7 @@ export default class RelateProduct extends Component {
         return (
         	<div className="product-relative">
         		{
-                    this.state.products.map((product, i) => 
+                    data.map((product, i) => 
                         <ProductItemRelated
                             key={i}
                             data={product}

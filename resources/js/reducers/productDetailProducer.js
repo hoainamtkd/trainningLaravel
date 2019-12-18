@@ -5,7 +5,9 @@ var initialState = {};
 const itemEditing = (state = initialState, action) => {
     switch(action.type){
         case Types.PRODUCT_DETAIL: 
-            return [...state];
+            return {
+            	...state,
+            };
         default:
             return state;
     }
